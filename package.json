@@ -9,13 +9,17 @@
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sql.js": "^1.6.2"
   },
   "devDependencies": {
-    "@craco/craco": "^5.9.0",
-    "typescript": "^4.5.5"
+    "@craco/craco": "^5.9.0"
   },
   "scripts": {
     "start": "craco start",
