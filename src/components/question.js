@@ -15,9 +15,9 @@ export default ({ db, question, answer }) => {
   const [verdict, setVerdict] = useState(<pre></pre>);
 
   return (
-    <div>
+    <Box mb={5}>
       {question}
-      <Grid mt={2} spacing={2} container alignItems="center">
+      <Grid mt={1} spacing={2} container alignItems="center">
         <Grid item md={8}>
           <TextField
             sx={{ width: "100%" }}
@@ -57,10 +57,10 @@ export default ({ db, question, answer }) => {
       {verdict}
 
       {result && (
-        <Grid container mt={5} direction="row">
+        <Grid container mt={1} direction="row">
           <Grid item md={6} xs={12}>
             <center>
-              Résultat de votre requête
+              Résultat de votre requête <br></br>
               {result.map(({ columns, values }, i) => (
                 <ResultsTable columns={columns} values={values} />
               ))}
@@ -68,7 +68,7 @@ export default ({ db, question, answer }) => {
           </Grid>
           <Grid item md={6} xs={12}>
             <center>
-              Résultat attendu
+              Résultat attendu <br></br>
               {expected.map(({ columns, values }, i) => (
                 <ResultsTable columns={columns} values={values} />
               ))}
@@ -76,6 +76,6 @@ export default ({ db, question, answer }) => {
           </Grid>
         </Grid>
       )}
-    </div>
+    </Box>
   );
 };

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { exo_pokemon } from "./components/pokemon";
+import { exos } from "./components/exos";
 import Exo from "./components/exo";
 
 import AppBar from "@mui/material/AppBar";
@@ -26,10 +26,10 @@ const drawer = (
     <Toolbar />
     <Divider />
     <List>
-      {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-        <ListItem key={text} disablePadding>
+      {exos.map(({ name }) => (
+        <ListItem key={name} disablePadding>
           <ListItemButton>
-            <ListItemText primary={text} />
+            <ListItemText primary={name} />
           </ListItemButton>
         </ListItem>
       ))}
@@ -120,7 +120,9 @@ export default function App(props) {
         }}
       >
         <Toolbar />
-        <Exo {...exo_pokemon} />
+        {exos.map((exo) => (
+          <Exo {...exo} />
+        ))}
       </Box>
     </Box>
   );

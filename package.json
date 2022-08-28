@@ -1,36 +1,42 @@
 {
-  "name": "react-sqljs-demo",
-  "version": "1.0.0",
-  "description": "sql.js + react example starter project",
-  "keywords": [
-    "react",
-    "starter"
-  ],
-  "main": "src/index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@emotion/styled": "^11.10.0",
-    "@fontsource/roboto": "^4.5.8",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.10.0",
-    "lodash": "^4.17.21",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "sql.js": "^1.6.2"
-  },
-  "devDependencies": {
-    "@craco/craco": "^5.9.0"
-  },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test --env=jsdom",
-    "eject": "craco eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "name": "sql_exercises",
+    "version": "1.0.0",
+    "homepage": "https://fortierq.github.io/sql-exercises",
+    "description": "Exercices SQL",
+    "keywords": [
+        "react",
+        "starter"
+    ],
+    "main": "src/index.js",
+    "license": "MIT",
+    "dependencies": {
+        "@emotion/react": "^11.10.0",
+        "@emotion/styled": "^11.10.0",
+        "@mui/icons-material": "^5.10.2",
+        "@mui/material": "^5.10.2",
+        "lodash": "^4.17.21",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "sql.js": "^1.6.2"
+    },
+    "devDependencies": {
+        "@craco/craco": "^5.9.0",
+        "@material-ui/core": "^4.12.4",
+        "gh-pages": "^4.0.0",
+        "typescript": "^4.5.5"
+    },
+    "scripts": {
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
+        "start": "craco start",
+        "build": "craco build",
+        "test": "craco test --env=jsdom",
+        "eject": "craco eject"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
 }

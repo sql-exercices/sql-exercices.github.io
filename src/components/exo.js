@@ -3,7 +3,7 @@ import initSqlJs from "sql.js";
 import sqlWasm from "!!file-loader?name=sql-wasm-[contenthash].wasm!sql.js/dist/sql-wasm.wasm";
 import Question from "./question";
 
-export default ({ db_url, questions, answers }) => {
+export default ({ db_url, diagram_url, questions, answers }) => {
   const [db, setDb] = useState(null);
 
   // https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/
@@ -21,12 +21,17 @@ export default ({ db_url, questions, answers }) => {
   }, []);
 
   return (
-    <ol>
-      {questions.map((q, i) => (
-        <li>
-          <Question db={db} question={q} answer={answers[i]} />
-        </li>
-      ))}
-    </ol>
+    <div>
+      <center>
+        <img src={diagram_url} width="80%"></img>
+      </center>
+      <ol>
+        {questions.map((q, i) => (
+          <li>
+            <Question db={db} question={q} answer={answers[i]} />
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 };
