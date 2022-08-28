@@ -5,6 +5,7 @@ import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
+
 var _ = require("lodash");
 
 export default ({ db, question, answer }) => {
@@ -16,8 +17,8 @@ export default ({ db, question, answer }) => {
   return (
     <div>
       {question}
-      <Grid mt={0} container spacing={4} direction="row" alignItems="center">
-        <Grid item md={8} xs={8}>
+      <Grid mt={2} spacing={2} container alignItems="center">
+        <Grid item md={8}>
           <TextField
             sx={{ width: "100%" }}
             multiline
@@ -26,7 +27,7 @@ export default ({ db, question, answer }) => {
             onChange={(e) => setRequest(e.target.value)}
           />
         </Grid>
-        <Grid item>
+        <Grid item md={2}>
           <Button
             size="large"
             variant="contained"
@@ -41,40 +42,40 @@ export default ({ db, question, answer }) => {
                   _.isEqual(r, expected) ? (
                     <pre>Correct</pre>
                   ) : (
-                    <pre>Il y a une erreur dans votre requête</pre>
+                    <pre>Votre requête ne renvoie pas le bon résultat</pre>
                   )
                 );
-              } catch (err) {}
+              } catch (err) {
+                setVerdict(<pre>{(err || "").toString()}</pre>);
+              }
             }}
           >
             Valider
           </Button>
         </Grid>
       </Grid>
+      {verdict}
 
       {result && (
-        <Grid container direction="row">
+        <Grid container mt={5} direction="row">
           <Grid item md={6} xs={12}>
-            {result.map(({ columns, values }, i) => (
-              <ResultsTable
-                columns={columns}
-                values={values}
-                title="Résultat de votre requête"
-              />
-            ))}
+            <center>
+              Résultat de votre requête
+              {result.map(({ columns, values }, i) => (
+                <ResultsTable columns={columns} values={values} />
+              ))}
+            </center>
           </Grid>
           <Grid item md={6} xs={12}>
-            {expected.map(({ columns, values }, i) => (
-              <ResultsTable
-                columns={columns}
-                values={values}
-                title="Résultat attendu"
-              />
-            ))}
+            <center>
+              Résultat attendu
+              {expected.map(({ columns, values }, i) => (
+                <ResultsTable columns={columns} values={values} />
+              ))}
+            </center>
           </Grid>
         </Grid>
       )}
-      <Grid item>{verdict}</Grid>
     </div>
   );
 };

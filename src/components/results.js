@@ -11,17 +11,12 @@ import TableRow from "@mui/material/TableRow";
  * Renders a single value of the array returned by db.exec(...) as a table
  * @param {import("sql.js").QueryExecResult} props
  */
-export function ResultsTable({ columns, values, title }) {
+export function ResultsTable({ columns, values }) {
   return (
     <Paper sx={{ width: "80%" }}>
       <TableContainer sx={{ maxHeight: 300 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={columns.length}>
-                {title}
-              </TableCell>
-            </TableRow>
             <TableRow>
               {columns.map((columnName, i) => (
                 <TableCell
