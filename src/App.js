@@ -24,7 +24,7 @@ const drawerWidth = 240;
 export default function App(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedExo, setSelectedExo] = React.useState(1);
+  const [selectedExo, setSelectedExo] = React.useState(0);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -51,6 +51,8 @@ export default function App(props) {
       </List>
     </div>
   );
+
+  let exos_components = exos.map((e) => <Exo {...e} />);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -124,7 +126,7 @@ export default function App(props) {
         }}
       >
         <Toolbar />
-        {<Exo {...exos[selectedExo]} />}
+        {<Exo key={selectedExo} {...exos[selectedExo]} />}
       </Box>
     </Box>
   );

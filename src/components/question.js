@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 var equal = require("fast-deep-equal/es6/react");
 
-export default ({ db, question, answer }) => {
+export default ({ name, db, question, answer }) => {
   const [request, setRequest] = useState("");
   const [result, setResult] = useState(null);
   const [expected, setExpected] = useState(null);
@@ -19,6 +19,7 @@ export default ({ db, question, answer }) => {
       <Grid mt={1} spacing={2} container alignItems="center">
         <Grid item md={8}>
           <TextField
+            key={name + question}
             sx={{ width: "100%" }}
             multiline
             placeholder="Votre requête SQL"

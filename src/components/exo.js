@@ -3,10 +3,15 @@ import initSqlJs from "sql.js";
 import sqlWasm from "!!file-loader?name=sql-wasm-[contenthash].wasm!sql.js/dist/sql-wasm.wasm";
 import Question from "./question";
 
-export default ({ db_url, diagram_url, description, questions, answers }) => {
+export default ({
+  name,
+  db_url,
+  diagram_url,
+  description,
+  questions,
+  answers,
+}) => {
   const [db, setDb] = useState(null);
-
-  // https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/
   useEffect(async () => {
     try {
       const sqlPromise = initSqlJs({ locateFile: () => sqlWasm });
@@ -14,7 +19,7 @@ export default ({ db_url, diagram_url, description, questions, answers }) => {
       const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
       const db = new SQL.Database();
       db.exec(buf);
-      setDb(db); // select * from pokemons
+      setDb(db);
     } catch (err) {
       setError(err);
     }
@@ -26,8 +31,8 @@ export default ({ db_url, diagram_url, description, questions, answers }) => {
       {description && <div>{description}</div>}
       <ol>
         {questions.map((q, i) => (
-          <li>
-            <Question db={db} question={q} answer={answers[i]} />
+          <li key={`${name}_${i}`}>
+            <Question db={db} name={name} question={q} answer={answers[i]} />
           </li>
         ))}
       </ol>
