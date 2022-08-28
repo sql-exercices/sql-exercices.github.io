@@ -5,7 +5,7 @@ import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-import { equal_results } from "../utility";
+var _ = require("lodash");
 
 export default ({ db, question, answer }) => {
   const [request, setRequest] = useState("");
@@ -28,12 +28,14 @@ export default ({ db, question, answer }) => {
         justifyContent="space-evenly"
         alignItems="center"
       >
-        <Stack direction="row" spacing={2}>
+        <Grid item>
           <TextField
             multiline
             value={request}
             onChange={(e) => setRequest(e.target.value)}
           />
+        </Grid>
+        <Grid item>
           <Button
             size="large"
             variant="contained"
@@ -44,20 +46,30 @@ export default ({ db, question, answer }) => {
               console.log(r);
               console.log(expected);
               setResult(r);
-              setCorrect(equal_results(r, expected) ? 2 : 1);
+              setCorrect(_.isEqual(r, expected) ? 2 : 1);
             }}
           >
             Valider
           </Button>
-        </Stack>
+        </Grid>
       </Grid>
 
-      <Stack direction="row" spacing={2}>
-        {result.map(({ columns, values }, i) => (
-          <ResultsTable key={i} columns={columns} values={values} />
-        ))}
-        {verdict}
-      </Stack>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+        <Grid item>
+          {result.map(({ columns, values }, i) => (
+            <ResultsTable key={i} columns={columns} values={values} />
+          ))}
+        </Grid>
+        <Grid item>{verdict}</Grid>
+      </Grid>
+      {result.map(({ columns, values }, i) => (
+        <ResultsTable key={i} columns={columns} values={values} />
+      ))}
     </div>
   );
 };

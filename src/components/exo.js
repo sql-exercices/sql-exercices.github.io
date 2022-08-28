@@ -21,10 +21,12 @@ export default ({ db_url, questions, answers }) => {
   }, []);
 
   return (
-    <div>
+    <ol>
       {questions.map((q, i) => (
-        <Question db={db} question={q} answer={answers[i]} />
+        <li>
+          <Question db={db} question={q} answer={answers[i]} />
+        </li>
       ))}
-    </div>
+    </ol>
   );
 };
