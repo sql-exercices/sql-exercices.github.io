@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import { exos } from "./components/exos";
 import Exo from "./components/exo";
+import { exos } from "./exos/exos";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -21,25 +21,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 const drawerWidth = 240;
 
-const drawer = (
-  <div>
-    <Toolbar />
-    <Divider />
-    <List>
-      {exos.map(({ name }) => (
-        <ListItem key={name} disablePadding>
-          <ListItemButton>
-            <ListItemText primary={name} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-  </div>
-);
-
 export default function App(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [selectedExo, setSelectedExo] = React.useState(1);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -47,6 +32,25 @@ export default function App(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+  const drawer = (
+    <div>
+      <Toolbar />
+      <Divider />
+      <List>
+        {exos.map(({ name }, i) => (
+          <ListItem key={name} disablePadding>
+            <ListItemButton
+              selected={selectedExo === i}
+              onClick={(_) => setSelectedExo(i)}
+            >
+              <ListItemText primary={name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -120,9 +124,7 @@ export default function App(props) {
         }}
       >
         <Toolbar />
-        {exos.map((exo) => (
-          <Exo {...exo} />
-        ))}
+        {<Exo {...exos[selectedExo]} />}
       </Box>
     </Box>
   );

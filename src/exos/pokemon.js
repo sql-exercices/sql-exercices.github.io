@@ -2,8 +2,12 @@ export const exo_pokemon = {
   name: "Pokémon",
   db_url:
     "https://raw.githubusercontent.com/mp2i-info/mp2i-info.github.io/main/files/A_sql/pokemon/pokemon.sql",
-  diagram_url:
-    "https://raw.githubusercontent.com/cpge-itc/itc2/main/files/1_sql/pokemon.png",
+  diagram_url: (
+    <img
+      src="https://raw.githubusercontent.com/cpge-itc/itc2/main/files/1_sql/pokemon.png"
+      width="80%"
+    ></img>
+  ),
   questions: [
     "Calculer le nombre de pokémons.",
     "Afficher les pokémons détenus par Pierre",
