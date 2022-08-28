@@ -42,6 +42,7 @@ export default function App(props) {
         {exos.map(({ name }, i) => (
           <ListItem key={name} disablePadding>
             <ListItemButton
+              disableRipple
               selected={selectedExo === i}
               onClick={(_) => setSelectedExo(i)}
             >
