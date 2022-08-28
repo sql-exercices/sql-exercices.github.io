@@ -5,8 +5,7 @@ import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-
-var _ = require("lodash");
+var equal = require("fast-deep-equal/es6/react");
 
 export default ({ db, question, answer }) => {
   const [request, setRequest] = useState("");
@@ -39,7 +38,7 @@ export default ({ db, question, answer }) => {
                 setResult(r);
                 setExpected(expected);
                 setVerdict(
-                  _.isEqual(r, expected) ? (
+                  equal(r[0].values, expected[0].values) ? (
                     <pre>Correct</pre>
                   ) : (
                     <pre>Votre requête ne renvoie pas le bon résultat</pre>
