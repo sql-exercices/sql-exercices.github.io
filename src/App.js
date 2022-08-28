@@ -69,7 +69,7 @@ export default function App(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Exercices SQL
           </Typography>
         </Toolbar>
       </AppBar>
@@ -120,7 +120,7 @@ export default function App(props) {
         }}
       >
         <Toolbar />
-        <Exo {...exo_pokemon} />;
+        <Exo {...exo_pokemon} />
       </Box>
     </Box>
   );

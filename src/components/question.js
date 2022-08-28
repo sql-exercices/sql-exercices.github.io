@@ -9,28 +9,19 @@ var _ = require("lodash");
 
 export default ({ db, question, answer }) => {
   const [request, setRequest] = useState("");
-  const [result, setResult] = useState([{ columns: [], values: [] }]);
-  const [correct, setCorrect] = useState(0);
+  const [result, setResult] = useState(null);
+  const [expected, setExpected] = useState(null);
+  const [verdict, setVerdict] = useState(<pre></pre>);
 
-  let verdict = <pre></pre>;
-  if (correct == 1) {
-    verdict = <pre>Il y a une erreur dans votre requête</pre>;
-  }
-  if (correct == 2) {
-    verdict = <pre>Correct</pre>;
-  }
   return (
     <div>
       {question}
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-      >
-        <Grid item>
+      <Grid mt={0} container spacing={4} direction="row" alignItems="center">
+        <Grid item md={8} xs={8}>
           <TextField
+            sx={{ width: "100%" }}
             multiline
+            placeholder="Votre requête SQL"
             value={request}
             onChange={(e) => setRequest(e.target.value)}
           />
@@ -41,12 +32,19 @@ export default ({ db, question, answer }) => {
             variant="contained"
             color="success"
             onClick={() => {
-              let expected = db.exec(answer);
-              let r = db.exec(request);
-              console.log(r);
-              console.log(expected);
-              setResult(r);
-              setCorrect(_.isEqual(r, expected) ? 2 : 1);
+              try {
+                let expected = db.exec(answer);
+                let r = db.exec(request);
+                setResult(r);
+                setExpected(expected);
+                setVerdict(
+                  _.isEqual(r, expected) ? (
+                    <pre>Correct</pre>
+                  ) : (
+                    <pre>Il y a une erreur dans votre requête</pre>
+                  )
+                );
+              } catch (err) {}
             }}
           >
             Valider
@@ -54,22 +52,29 @@ export default ({ db, question, answer }) => {
         </Grid>
       </Grid>
 
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-      >
-        <Grid item>
-          {result.map(({ columns, values }, i) => (
-            <ResultsTable key={i} columns={columns} values={values} />
-          ))}
+      {result && (
+        <Grid container direction="row">
+          <Grid item md={6} xs={12}>
+            {result.map(({ columns, values }, i) => (
+              <ResultsTable
+                columns={columns}
+                values={values}
+                title="Résultat de votre requête"
+              />
+            ))}
+          </Grid>
+          <Grid item md={6} xs={12}>
+            {expected.map(({ columns, values }, i) => (
+              <ResultsTable
+                columns={columns}
+                values={values}
+                title="Résultat attendu"
+              />
+            ))}
+          </Grid>
         </Grid>
-        <Grid item>{verdict}</Grid>
-      </Grid>
-      {result.map(({ columns, values }, i) => (
-        <ResultsTable key={i} columns={columns} values={values} />
-      ))}
+      )}
+      <Grid item>{verdict}</Grid>
     </div>
   );
 };
