@@ -1,9 +1,11 @@
+import React from "react";
+
 export const exo_fonciere = {
   name: "Valeur foncière",
   diagram_url: (
     <img
       src="https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/fonciere/fonciere.png"
-      width="300"
+      width="290"
     ></img>
   ),
   db_url:

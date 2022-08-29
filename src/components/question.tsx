@@ -5,16 +5,18 @@ import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+
 var equal = require("fast-deep-equal/es6/react");
 
 export default ({ name, db, question, answer }) => {
   const [request, setRequest] = useState("");
-  const [result, setResult] = useState(null);
-  const [expected, setExpected] = useState(null);
+  const [result, setResult] = useState<null | any[]>(null);
+  const [expected, setExpected] = useState<null | any[]>(null);
   const [verdict, setVerdict] = useState(<pre></pre>);
 
   return (
-    <Box mb={5}>
+    <Box mb={8}>
       {question}
       <Grid mt={1} spacing={2} container alignItems="center">
         <Grid item md={8}>
@@ -56,26 +58,28 @@ export default ({ name, db, question, answer }) => {
       </Grid>
       {verdict}
 
-      {result && (
-        <Grid container mt={1} direction="row">
-          <Grid item md={6} xs={12}>
-            <center>
+      <Grid container spacing={6} direction="row">
+        {result && (
+          <Grid item md={5} xs={12}>
+            <Typography align="center">
               Résultat de votre requête <br></br>
-              {result.map(({ columns, values }, i) => (
+              {result.map(({ columns, values }) => (
                 <ResultsTable columns={columns} values={values} />
               ))}
-            </center>
+            </Typography>
           </Grid>
-          <Grid item md={6} xs={12}>
-            <center>
+        )}
+        {expected && (
+          <Grid item md={5} xs={12}>
+            <Typography align="center">
               Résultat attendu <br></br>
-              {expected.map(({ columns, values }, i) => (
+              {expected.map(({ columns, values }) => (
                 <ResultsTable columns={columns} values={values} />
               ))}
-            </center>
+            </Typography>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Grid>
     </Box>
   );
 };

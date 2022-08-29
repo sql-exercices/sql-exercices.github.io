@@ -1,3 +1,4 @@
+import React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,11 +9,10 @@ import TableRow from "@mui/material/TableRow";
 
 /**
  * Renders a single value of the array returned by db.exec(...) as a table
- * @param {import("sql.js").QueryExecResult} props
  */
 export function ResultsTable({ columns, values }) {
   return (
-    <Paper elevation={3} sx={{ width: "80%" }}>
+    <Paper elevation={3} sx={{ width: "100%" }}>
       <TableContainer sx={{ maxHeight: 300 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
