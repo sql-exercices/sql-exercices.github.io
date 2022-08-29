@@ -10,4 +10,4 @@ export interface Exo_interface {
   answers: string[];
 }
 
-export const exos: Exo_interface[] = [exo_pokemon, exo_fonciere];
+export const exos: Exo_interface[] = [exo_fonciere, exo_pokemon];

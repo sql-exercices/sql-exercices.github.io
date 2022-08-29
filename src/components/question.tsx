@@ -18,7 +18,7 @@ export default ({ name, db, question, answer }) => {
   const [result, setResult] = useState<null | any[]>(null);
   const [expected, setExpected] = useState<null | any[]>(null);
   const [verdict, setVerdict] = useState(<pre></pre>);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === "clickaway") {
@@ -57,7 +57,6 @@ export default ({ name, db, question, answer }) => {
             <Editor
               height="15vh"
               defaultLanguage="sql"
-              defaultValue="// some comment"
               onChange={(e) => setRequest(e)}
               options={{
                 lineNumbers: "off",
