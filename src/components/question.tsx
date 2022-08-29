@@ -3,9 +3,12 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 var equal = require("fast-deep-equal/es6/react");
 
@@ -14,9 +17,30 @@ export default ({ name, db, question, answer }) => {
   const [result, setResult] = useState<null | any[]>(null);
   const [expected, setExpected] = useState<null | any[]>(null);
   const [verdict, setVerdict] = useState(<pre></pre>);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
-    <Box mb={8}>
+    <Box mb={4}>
       {question}
       <Grid mt={1} spacing={2} container alignItems="center">
         <Grid item md={8}>
@@ -30,6 +54,13 @@ export default ({ name, db, question, answer }) => {
           />
         </Grid>
         <Grid item md={2}>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message={verdict}
+            action={action}
+          />
           <Button
             size="large"
             variant="contained"
@@ -40,13 +71,15 @@ export default ({ name, db, question, answer }) => {
                 let r = db.exec(request);
                 setResult(r);
                 setExpected(expected);
+
                 setVerdict(
                   equal(r[0].values, expected[0].values) ? (
-                    <pre>Correct</pre>
+                    <Box>Correct !</Box>
                   ) : (
-                    <pre>Votre requête ne renvoie pas le bon résultat</pre>
+                    <Box>Votre requête ne renvoie pas le bon résultat.</Box>
                   )
                 );
+                setOpen(true);
               } catch (err) {
                 setVerdict(<pre>{(err || "").toString()}</pre>);
               }
@@ -56,9 +89,7 @@ export default ({ name, db, question, answer }) => {
           </Button>
         </Grid>
       </Grid>
-      {verdict}
-
-      <Grid container spacing={6} direction="row">
+      <Grid container mt={0} spacing={6} direction="row">
         {result && (
           <Grid item md={5} xs={12}>
             <Typography align="center">

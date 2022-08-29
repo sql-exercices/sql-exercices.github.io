@@ -1,4 +1,13 @@
 import { exo_pokemon } from "./pokemon";
 import { exo_fonciere } from "./fonciere";
 
-export const exos = [exo_pokemon, exo_fonciere];
+export interface Exo_interface {
+  name: string;
+  diagram: JSX.Element;
+  db_url: string;
+  description: JSX.Element;
+  questions: string[];
+  answers: string[];
+}
+
+export const exos: Exo_interface[] = [exo_pokemon, exo_fonciere];
