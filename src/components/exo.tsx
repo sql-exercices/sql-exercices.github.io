@@ -17,7 +17,6 @@ export default (exo: Exo_interface) => {
       const dataPromise = fetch(exo.db_url).then((res) => res.text());
       const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
       const db = new SQL.Database();
-      console.log(buf);
       db.exec(buf);
       setDb(db);
     })();
@@ -26,7 +25,7 @@ export default (exo: Exo_interface) => {
   return (
     <div>
       {exo.description && (
-        <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 1 }}>
+        <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 2 }}>
           {exo.description}
         </Box>
       )}

@@ -5,6 +5,7 @@ import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Editor from "@monaco-editor/react";
 
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
@@ -42,16 +43,30 @@ export default ({ name, db, question, answer }) => {
   return (
     <Box mb={4}>
       {question}
-      <Grid mt={1} spacing={2} container alignItems="center">
-        <Grid item md={8}>
-          <TextField
+      <Grid spacing={2} container alignItems="center">
+        <Grid item md={10}>
+          {/* <TextField
             key={name + question}
             sx={{ width: "100%" }}
             multiline
             placeholder="Votre requête SQL"
             value={request}
             onChange={(e) => setRequest(e.target.value)}
-          />
+          /> */}
+          <Box sx={{ border: 1 }} p={0.5}>
+            <Editor
+              height="15vh"
+              defaultLanguage="sql"
+              defaultValue="// some comment"
+              onChange={(e) => setRequest(e)}
+              options={{
+                lineNumbers: "off",
+                minimap: {
+                  enabled: false,
+                },
+              }}
+            />
+          </Box>
         </Grid>
         <Grid item md={2}>
           <Snackbar

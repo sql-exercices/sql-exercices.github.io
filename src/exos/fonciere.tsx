@@ -13,8 +13,8 @@ export const exo_fonciere: Exo_interface = {
     "https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/fonciere/fonciere.sql",
   description: (
     <div>
-      Informations sur les ventes immobilières en 2021. <br></br>
-      La <b>valeur foncière</b> est l'estimation de la valeur d'un terrain.{" "}
+      Informations sur les ventes immobilières en 2021. La{" "}
+      <b>valeur foncière</b> est l'estimation de la valeur d'un terrain.{" "}
       <br></br>
       <a href="https://cadastre.data.gouv.fr/dvf">Source : data.gouv.</a>
     </div>
