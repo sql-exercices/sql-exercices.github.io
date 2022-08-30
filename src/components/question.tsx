@@ -42,8 +42,15 @@ export default ({ name, db, question, answer }) => {
   return (
     <Box mb={4}>
       {question}
-      <Grid spacing={2} container alignItems="center">
-        <Grid item mb={5} md={10}>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={verdict}
+        action={action}
+      />
+      <Grid spacing={2} mb={5} container alignItems="center">
+        <Grid item md={10}>
           <Box sx={{ border: 1 }} p={0.5}>
             <Editor
               height="10vh"
@@ -59,13 +66,6 @@ export default ({ name, db, question, answer }) => {
           </Box>
         </Grid>
         <Grid item md={2}>
-          <Snackbar
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleClose}
-            message={verdict}
-            action={action}
-          />
           <Button
             size="large"
             variant="contained"
@@ -84,10 +84,10 @@ export default ({ name, db, question, answer }) => {
                     <Box>Votre requête ne renvoie pas le bon résultat.</Box>
                   )
                 );
-                setOpen(true);
               } catch (err) {
                 setVerdict(<pre>{(err || "").toString()}</pre>);
               }
+              setOpen(true);
             }}
           >
             Valider
