@@ -39,3 +39,7 @@ textarea {
     animation: octocat-wave 560ms ease-in-out;
   }
 }
+iframe {
+  pointer-events: none;
+  /* TODO */
+}

@@ -3,12 +3,7 @@ import { Exo_interface } from "./exos";
 
 export const exo_fonciere: Exo_interface = {
   name: "Valeur foncière",
-  diagram: (
-    <img
-      src="https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/fonciere/fonciere.png"
-      width="290"
-    ></img>
-  ),
+  diagram: "630bbf70f1a9b01b0ffa30be",
   db_url:
     "https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/fonciere/fonciere.sql",
   description: (

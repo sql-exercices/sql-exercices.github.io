@@ -29,7 +29,18 @@ export default (exo: Exo_interface) => {
           {exo.description}
         </Box>
       )}
-      {exo.diagram && <Typography align="center">{exo.diagram}</Typography>}
+      {exo.diagram && (
+        <Typography align="center">
+          <iframe
+            frameBorder="0"
+            width="100%"
+            height="400"
+            src={"https://dbdiagram.io/embed/" + exo.diagram}
+          >
+            {" "}
+          </iframe>
+        </Typography>
+      )}
       <hr></hr>
       <ol>
         {exo.questions.map((q, i) => (

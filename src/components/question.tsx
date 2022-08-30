@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import { ResultsTable } from "./results";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -44,18 +43,10 @@ export default ({ name, db, question, answer }) => {
     <Box mb={4}>
       {question}
       <Grid spacing={2} container alignItems="center">
-        <Grid item md={10}>
-          {/* <TextField
-            key={name + question}
-            sx={{ width: "100%" }}
-            multiline
-            placeholder="Votre requête SQL"
-            value={request}
-            onChange={(e) => setRequest(e.target.value)}
-          /> */}
+        <Grid item mb={5} md={10}>
           <Box sx={{ border: 1 }} p={0.5}>
             <Editor
-              height="15vh"
+              height="10vh"
               defaultLanguage="sql"
               onChange={(e) => setRequest(e)}
               options={{
@@ -103,7 +94,7 @@ export default ({ name, db, question, answer }) => {
           </Button>
         </Grid>
       </Grid>
-      <Grid container mt={0} spacing={6} direction="row">
+      <Grid container spacing={6} direction="row">
         {result && (
           <Grid item md={5} xs={12}>
             <Typography align="center">

@@ -13,8 +13,8 @@ import TableRow from "@mui/material/TableRow";
 export function ResultsTable({ columns, values }) {
   return (
     <Paper elevation={3} sx={{ width: "100%" }}>
-      <TableContainer sx={{ maxHeight: 300 }}>
-        <Table stickyHeader aria-label="sticky table">
+      <TableContainer sx={{ maxHeight: 250 }}>
+        <Table size="small" stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((columnName, i) => (
