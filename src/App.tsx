@@ -70,7 +70,7 @@ export default function App(props) {
         >
           <Toolbar>
             <GithubCorner
-              href="https://github.com/fortierq/sql-exercises"
+              href="https://cpge-exercices.github.io/sql"
               direction="right"
               size="60"
             />
