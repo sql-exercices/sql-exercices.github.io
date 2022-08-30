@@ -49,9 +49,16 @@ export default ({ name, db, question, answer }) => {
         message={verdict}
         action={action}
       />
-      <Grid spacing={2} mb={5} container alignItems="center">
-        <Grid item md={10}>
-          <Box sx={{ border: 1 }} p={0.5}>
+
+      <Grid
+        spacing={2}
+        mb={5}
+        container
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item md={10} sm={12} xs={12}>
+          <Box sx={{ border: 1, width: "100%" }} p={0.5}>
             <Editor
               height="10vh"
               defaultLanguage="sql"
@@ -65,7 +72,7 @@ export default ({ name, db, question, answer }) => {
             />
           </Box>
         </Grid>
-        <Grid item md={2}>
+        <Grid item md={2} sm={2}>
           <Button
             size="large"
             variant="contained"
