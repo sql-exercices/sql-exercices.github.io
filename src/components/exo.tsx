@@ -41,7 +41,6 @@ export default (exo: Exo_interface) => {
           </iframe>
         </Typography>
       )}
-      <hr></hr>
       <ol>
         {exo.questions.map((q, i) => (
           <li key={`${exo.name}_${i}`}>
