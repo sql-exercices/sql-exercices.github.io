@@ -1,5 +1,6 @@
 module.exports = {
   webpack: {
+    target: 'node',
     resolve: {
       extensions: [".ts", ".js", ".json"],
     },

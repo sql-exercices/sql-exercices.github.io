@@ -14,23 +14,24 @@
     "@emotion/styled": "^11.10.4",
     "@monaco-editor/react": "^4.4.5",
     "@mui/icons-material": "^5.10.3",
-    "@mui/material": "^5.10.3",
-    "@types/sql.js": "^1.4.3",
+    "@mui/material": "^5.10.5",
     "fast-deep-equal": "^3.1.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-github-corner": "^2.5.0",
     "react-github-fork-ribbon": "^0.7.1",
-    "sql.js": "^1.7.0"
+    "sql.js": "^1.8.0"
   },
   "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "@types/sql.js": "^1.4.3",
     "@craco/craco": "^6.4.5",
-    "@material-ui/core": "^4.12.4",
-    "@types/node": "^18.7.14",
-    "@types/react": "^18.0.17",
     "gh-pages": "^4.0.0",
-    "prettier": "2.7.1",
-    "typescript": "^4.8.2"
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.3"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -45,5 +46,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "browser": {
+    "crypto": false,
+    "path": false,
+    "fs": false
+  }
 }
