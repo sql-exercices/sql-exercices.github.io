@@ -60,7 +60,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                 <Grid item md={10} sm={10} xs={12}>
                     <Box sx={{ border: 1, width: "100%" }} p={0.5}>
                         <Editor
-                            height="10vh"
+                            height="13vh"
                             defaultLanguage="sql"
                             onChange={(e) => setRequest(e)}
                             options={{

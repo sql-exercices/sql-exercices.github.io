@@ -22,7 +22,7 @@ export const exo_pokemon: Exo_interface = {
   answers: [
     "SELECT count(*) FROM pokemons;",
     "select nom, niveau from evolue_en join pokemons on id = pokemon_base_id",
-    "SELECT pokemons.nom FROM pokemons JOIN detient_pokemons ON pokemons.id = pokemon_id JOIN dresseurs ON dresseurs.id = dresseur_id",
+    "SELECT pokemons.nom FROM pokemons JOIN detient_pokemons ON pokemons.id = pokemon_id JOIN dresseurs ON dresseurs.id = dresseur_id WHERE dresseur.nom = 'Pierre'",
     "select types.libelle, attaques.libelle from types join attaques on types.id = type_id",
     "select dresseurs.nom, pokemons.nom from pokemons join detient_pokemons on pokemons.id = pokemon_id join dresseurs on dresseurs.id = dresseur_id",
     "select pokemons.nom, pokemons_evol.nom, niveau from evolue_en join pokemons on pokemon_base_id = pokemons.id join pokemons as pokemons_evol on pokemon_evol_id = pokemons_evol.id",

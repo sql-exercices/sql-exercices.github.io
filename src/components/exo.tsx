@@ -33,7 +33,7 @@ export default (exo: Exo_interface): JSX.Element => {
                 <Typography align="center">
                     <iframe
                         frameBorder="0"
-                        width="100%"
+                        width="70%"
                         height="400"
                         src={"https://dbdiagram.io/embed/" + exo.diagram}
                     >
