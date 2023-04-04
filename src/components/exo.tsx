@@ -6,8 +6,12 @@ import initSqlJs from "sql.js";
 import sqlWasm from "!!file-loader?name=sql-wasm-[contenthash].wasm!sql.js/dist/sql-wasm.wasm";
 import Question from "./question";
 import Box from "@mui/material/Box";
+import Pagination from '@mui/material/Pagination';
+import { Grid } from "@mui/material";
+import Divider from '@mui/material/Divider';
 
 export default (exo: Exo_interface): JSX.Element => {
+    const [page, setPage] = useState(1);
     const [db, setDb] = useState<any>(null);
     useEffect(() => {
         (async () => {
@@ -21,38 +25,35 @@ export default (exo: Exo_interface): JSX.Element => {
             setDb(db);
         })();
     }, []);
-
     return (
         <div>
-            {exo.description && (
-                <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 2 }}>
-                    {exo.description}
-                </Box>
+            <Grid container justifyContent="center" alignItems="center">
+                <Grid item sm={4} xs={12}>
+                    {exo.description && (
+                        <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 2 }}>
+                            {exo.description}
+                        </Box>
+                    )}
+                </Grid>
+                <Grid item sm={8} xs={12}>
+                    {exo.diagram && <iframe width="100%" height="450" src={"https://dbdiagram.io/embed/" + exo.diagram} />}
+                </Grid>
+            </Grid>
+            <Divider sx={{ m: 3 }} />
+            <Grid container justifyContent="center" alignItems="center">
+                <Pagination count={exo.questions.length} page={page} onChange={(_, v) => { setPage(v) }} />
+            </Grid>
+            {exo.questions.map((q, i) => 
+            <div style={{display: i+1 === page ? "block" : "none"}}>
+                <Question
+                name={exo.name}
+                db={db}
+                question={exo.questions[i]}
+                answer={exo.answers[i]}
+            />
+            </div>
             )}
-            {exo.diagram && (
-                <Typography align="center">
-                    <iframe
-                        frameBorder="0"
-                        width="70%"
-                        height="400"
-                        src={"https://dbdiagram.io/embed/" + exo.diagram}
-                    >
-                        {" "}
-                    </iframe>
-                </Typography>
-            )}
-            <ol>
-                {exo.questions.map((q, i) => (
-                    <li key={`${exo.name}_${i}`}>
-                        <Question
-                            db={db}
-                            name={exo.name}
-                            question={q}
-                            answer={exo.answers[i]}
-                        />
-                    </li>
-                ))}
-            </ol>
+
         </div>
     );
 };

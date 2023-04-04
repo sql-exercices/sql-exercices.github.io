@@ -9,6 +9,7 @@ import Editor from "@monaco-editor/react";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { Alert } from "@mui/material";
 
 var equal = require("fast-deep-equal/es6/react");
 
@@ -16,7 +17,8 @@ export default ({ name, db, question, answer }): JSX.Element => {
     const [request, setRequest] = useState("");
     const [result, setResult] = useState<null | any[]>(null);
     const [expected, setExpected] = useState<null | any[]>(null);
-    const [verdict, setVerdict] = useState(<pre></pre>);
+    const [verdict, setVerdict] = useState(0);
+    const [error, setError] = useState("");
     const [open, setOpen] = useState(false);
 
     const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
@@ -38,18 +40,26 @@ export default ({ name, db, question, answer }): JSX.Element => {
             </IconButton>
         </React.Fragment>
     );
-
+    let sev = "success";
+    let message = "Correct !";
+    if (error) {
+        sev = "error";
+        message = "Erreur : " + error;
+    }
+    else if (verdict === 0) {
+        sev = "error";
+        message = "Incorrect !";
+    }
     return (
         <Box mb={4}>
-            {question}
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                message={verdict}
-                action={action}
-            />
-
+            <Grid container justifyContent="center" alignItems="center" sx={{ m: 2, fontWeight: 'bold' }}>
+                {question}
+            </Grid>
+            <Snackbar open={open} autoHideDuration={6000} action={action}>
+                <Alert onClose={handleClose} severity={sev==="error"?"error":"success"} sx={{ width: '100%' }}>
+                    {message}
+                </Alert>
+            </Snackbar>
             <Grid
                 spacing={2}
                 mb={5}
@@ -83,16 +93,10 @@ export default ({ name, db, question, answer }): JSX.Element => {
                                 let r = db.exec(request);
                                 setResult(r);
                                 setExpected(expected);
-
-                                setVerdict(
-                                    equal(r[0].values, expected[0].values) ? (
-                                        <Box>Correct !</Box>
-                                    ) : (
-                                        <Box>Votre requête ne renvoie pas le bon résultat.</Box>
-                                    )
-                                );
+                                setVerdict(equal(r[0].values, expected[0].values) ? 1 : 0);
                             } catch (err) {
-                                setVerdict(<pre>{(err || "").toString()}</pre>);
+                                console.log(err);
+                                // setError(err);
                             }
                             setOpen(true);
                         }}

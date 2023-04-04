@@ -20,7 +20,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import GithubCorner from "react-github-corner";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 export default function App(props) {
   const { window } = props;
@@ -84,7 +84,7 @@ export default function App(props) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Exercices SQL : {exos[selectedExo].name}
+              {exos[selectedExo].name}
             </Typography>
           </Toolbar>
         </AppBar>
