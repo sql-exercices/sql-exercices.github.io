@@ -9,7 +9,7 @@ import Editor from "@monaco-editor/react";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Alert } from "@mui/material";
+import { Alert, AlertColor } from "@mui/material";
 
 var equal = require("fast-deep-equal/es6/react");
 
@@ -40,7 +40,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
             </IconButton>
         </React.Fragment>
     );
-    let sev = "success";
+    let sev: AlertColor = "success";
     let message = "Correct !";
     if (error) {
         sev = "error";
@@ -56,7 +56,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                 {question}
             </Grid>
             <Snackbar open={open} autoHideDuration={6000} action={action}>
-                <Alert onClose={handleClose} severity={sev==="error"?"error":"success"} sx={{ width: '100%' }}>
+                <Alert onClose={handleClose} severity={sev} sx={{ width: '100%' }}>
                     {message}
                 </Alert>
             </Snackbar>

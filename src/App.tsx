@@ -19,125 +19,150 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import GithubCorner from "react-github-corner";
+import { Grid, Link } from "@mui/material";
 
-const drawerWidth = 200;
+const drawerWidth = 240;
+import { exo_pokemon } from "./exos/pokemon";
+
+let cours = [
+    { name: "Requêtes sur une table", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: [exo_pokemon] },
+    { name: "Plusieurs tables", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/2_join/join.pdf", exos: [] },
+    { name: "Fonctions d'agrégation", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/3_groupby/groupby.pdf", exos: [] },
+];
 
 export default function App(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedExo, setSelectedExo] = React.useState(0);
+    const { window } = props;
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [selectedExo, setSelectedExo] = React.useState(null);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+    const container =
+        window !== undefined ? () => window().document.body : undefined;
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {exos.map(({ name }, i) => (
-          <ListItem key={name} disablePadding>
-            <ListItemButton
-              disableRipple
-              selected={selectedExo === i}
-              onClick={(_) => setSelectedExo(i)}
-            >
-              <ListItemText primary={name} />
+    const title = (t: string) => {
+        return <ListItem key={t} >
+            <ListItemText primary={
+                <Grid container justifyContent="center" alignItems="center" sx={{ fontWeight: 'bold' }}>
+                    <Typography style={{ fontWeight: "bold" }}>{t}</Typography>
+                </Grid>
+            } />
+        </ListItem>
+    }
+
+    const exercise = (e: any) => {
+        return <ListItem key={e.name} disablePadding>
+            <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => setSelectedExo(e)}>
+                {e.name}
             </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+        </ListItem>
+    }
 
-  let exos_components = exos.map((e) => <Exo {...e} />);
+    const drawer = (
+        <div>
+            {/* <Divider sx={{ border: 2, height: 60 }} /> */}
+            <List>
+                {cours.map(({ name, url, exos }) => (
+                    <div>
+                        {title(name)}
+                        <Link href={url} target="_blank" sx={{ textDecoration: "none", color: "inherit" }} >
+                            <ListItemButton disableRipple> Cours </ListItemButton>
+                        </Link>
+                        {exos.map(exercise)}
+                        <Divider sx={{ border: 1 }} />
+                    </div>
+                ))}
+                {title("Exercices généraux")}
+                {exos.map(exercise)}
+            </List>
+        </div>
+    );
 
-  return (
-    <div>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
-            height: 60,
-          }}
-        >
-          <Toolbar>
-            <GithubCorner
-              href="https://github.com/cpge-exercices/sql"
-              direction="right"
-              size="60"
-            />
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              {exos[selectedExo].name}
-            </Typography>
-          </Toolbar>
-        </AppBar>
+    return (
+        <div>
+            <Box sx={{ display: "flex" }}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    sx={{
+                        width: { sm: `calc(100% - ${drawerWidth}px)` },
+                        ml: { sm: `${drawerWidth}px` },
+                        height: 60,
+                    }}
+                >
+                    <Toolbar>
+                        <GithubCorner
+                            href="https://github.com/cpge-exercices/sql"
+                            direction="right"
+                            size="60"
+                        />
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2 , display: { sm: "none" } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Cours et exercices SQL
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
 
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        >
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            {drawer}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-          }}
-        >
-          <Toolbar />
-          {<Exo key={selectedExo} {...exos[selectedExo]} />}
-        </Box>
-      </Box>
-    </div>
-  );
+                <Box
+                    component="nav"
+                    sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                >
+                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                        sx={{
+                            display: { xs: "block", sm: "none" },
+                            "& .MuiDrawer-paper": {
+                                boxSizing: "border-box",
+                                width: drawerWidth,
+                            },
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                    <Drawer
+                        variant="permanent"
+                        sx={{
+                            display: { xs: "none", sm: "block" },
+                            "& .MuiDrawer-paper": {
+                                boxSizing: "border-box",
+                                width: drawerWidth,
+                                border: 1.5,
+                            },
+                        }}
+                        open
+                    >
+                        {drawer}
+                    </Drawer>
+                </Box>
+                <Box
+                    component="main"
+                    sx={{
+                        flexGrow: 1,
+                        p: 3,
+                        width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    }}
+                >
+                    <Toolbar />
+                    {selectedExo && <Exo key={selectedExo} {...selectedExo} />}
+                </Box>
+            </Box>
+        </div>
+    );
 }
