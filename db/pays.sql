@@ -1,6 +1,4 @@
-PRAGMA foreign_keys=OFF;
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "pays" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255) NOT NULL, "nom" varchar(255) NOT NULL, "surface" integer, "area_land" integer, "area_water" integer, "population" integer, "croissance_population" float, "taux_naissance" float, "taux_deces" float, "taux_migration" float, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE pays ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255) NOT NULL, "nom" varchar(255) NOT NULL, "surface" integer, "area_land" integer, "area_water" integer, "population" integer, "croissance_population" float, "taux_naissance" float, "taux_deces" float, "taux_migration" float, "created_at" datetime, "updated_at" datetime);
 INSERT INTO pays VALUES(1,'af','Afghanistan',652230,652230,0,32564342,2.3199999999999998401,38.570000000000000284,13.890000000000000568,1.5100000000000000088,'2015-11-01 13:19:49.461734','2015-11-01 13:19:49.461734');
 INSERT INTO pays VALUES(2,'al','Albania',28748,27398,1350,3029278,0.29999999999999998889,12.919999999999999928,6.580000000000000071,3.2999999999999998223,'2015-11-01 13:19:54.431082','2015-11-01 13:19:54.431082');
 INSERT INTO pays VALUES(3,'ag','Algeria',2381741,2381741,0,39542166,1.8400000000000000799,23.670000000000001704,4.3099999999999996092,0.92000000000000003996,'2015-11-01 13:19:59.961286','2015-11-01 13:19:59.961286');
