@@ -1,6 +1,6 @@
 // https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styles.css";
 import Exo from "./components/exo";
 import { exos } from "./exos/exos";
@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import GithubCorner from "react-github-corner";
-import { Grid, Link } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const drawerWidth = 240;
 
