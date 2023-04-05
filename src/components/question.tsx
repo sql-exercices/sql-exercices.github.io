@@ -51,7 +51,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
         message = "Incorrect !";
     }
     return (
-        <Box mb={4}>
+        <Box mb={4} key={name}>
             <Grid container justifyContent="center" alignItems="center" sx={{ m: 2, fontWeight: 'bold' }}>
                 {question}
             </Grid>

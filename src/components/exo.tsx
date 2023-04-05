@@ -26,15 +26,14 @@ export default (exo: Exo_interface): JSX.Element => {
         })();
     }, []);
     return (
-        <div>
+        <div key={exo.name}>
             <Grid container justifyContent="center" alignItems="center">
-                <Grid item sm={4} xs={12}>
-                    {exo.description && (
-                        <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 2 }}>
-                            {exo.description}
-                        </Box>
-                    )}
+                {exo.description && <Grid item sm={4} xs={12}>
+                    <Box sx={{ borderLeft: 2.5, borderColor: "gray", padding: 2 }}>
+                        {exo.description}
+                    </Box>
                 </Grid>
+                }
                 <Grid item sm={8} xs={12}>
                     {exo.diagram && <iframe width="100%" height="450" src={"https://dbdiagram.io/embed/" + exo.diagram} />}
                 </Grid>
@@ -43,15 +42,15 @@ export default (exo: Exo_interface): JSX.Element => {
             <Grid container justifyContent="center" alignItems="center">
                 <Pagination count={exo.questions.length} page={page} onChange={(_, v) => { setPage(v) }} />
             </Grid>
-            {exo.questions.map((q, i) => 
-            <div style={{display: i+1 === page ? "block" : "none"}}>
-                <Question
-                name={exo.name}
-                db={db}
-                question={exo.questions[i]}
-                answer={exo.answers[i]}
-            />
-            </div>
+            {exo.questions.map((q, i) =>
+                <div style={{ display: i + 1 === page ? "block" : "none" }}>
+                    <Question
+                        name={exo.name}
+                        db={db}
+                        question={exo.questions[i]}
+                        answer={exo.answers[i]}
+                    />
+                </div>
             )}
 
         </div>

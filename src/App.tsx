@@ -22,10 +22,10 @@ import GithubCorner from "react-github-corner";
 import { Grid, Link } from "@mui/material";
 
 const drawerWidth = 240;
-import { exo_pokemon } from "./exos/pokemon";
+import { exo_pays } from "./exos/pays"
 
 let cours = [
-    { name: "Requêtes sur une table", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: [exo_pokemon] },
+    { name: "Requêtes sur une table", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: [exo_pays] },
     { name: "Plusieurs tables", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/2_join/join.pdf", exos: [] },
     { name: "Fonctions d'agrégation", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/3_groupby/groupby.pdf", exos: [] },
 ];
@@ -55,14 +55,13 @@ export default function App(props) {
     const exercise = (e: any) => {
         return <ListItem key={e.name} disablePadding>
             <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => setSelectedExo(e)}>
-                {e.name}
+                Exercice : {e.name}
             </ListItemButton>
         </ListItem>
     }
-
+        
     const drawer = (
         <div>
-            {/* <Divider sx={{ border: 2, height: 60 }} /> */}
             <List>
                 {cours.map(({ name, url, exos }) => (
                     <div>
@@ -79,7 +78,8 @@ export default function App(props) {
             </List>
         </div>
     );
-
+    const exercises = {};
+    exos.forEach((e) => exercises[e.name] = <Exo key={e.name} {...e} />);
     return (
         <div>
             <Box sx={{ display: "flex" }}>
@@ -160,7 +160,7 @@ export default function App(props) {
                     }}
                 >
                     <Toolbar />
-                    {selectedExo && <Exo key={selectedExo} {...selectedExo} />}
+                    {selectedExo && exercises[selectedExo.name]}
                 </Box>
             </Box>
         </div>
