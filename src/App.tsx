@@ -59,16 +59,18 @@ export default function App(props) {
             </ListItemButton>
         </ListItem>
     }
-        
+
     const drawer = (
         <div>
             <List>
                 {Object.entries(cours).map(([name, { url, exos }]) => (
                     <div>
                         {title(name)}
-                        <Link href={url} target="_blank" sx={{ textDecoration: "none", color: "inherit" }} >
-                            <ListItemButton disableRipple> Cours </ListItemButton>
-                        </Link>
+                        <ListItem key={name} disablePadding>
+                            <ListItemButton disableRipple selected={selectedExo === name} onClick={(_) => setSelectedExo(name)}>
+                                Cours
+                            </ListItemButton>
+                        </ListItem>
                         {exos.map(exercise)}
                         <Divider sx={{ border: 1 }} />
                     </div>
@@ -78,8 +80,10 @@ export default function App(props) {
             </List>
         </div>
     );
+    
     const exercises = {};
     Object.values(exos).forEach((e) => exercises[e.name] = <Exo key={e.name} {...e} />);
+
     return (
         <div>
             <Box sx={{ display: "flex" }}>
@@ -103,7 +107,7 @@ export default function App(props) {
                             aria-label="open drawer"
                             edge="start"
                             onClick={handleDrawerToggle}
-                            sx={{ mr: 2 , display: { sm: "none" } }}
+                            sx={{ mr: 2, display: { sm: "none" } }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -160,7 +164,8 @@ export default function App(props) {
                     }}
                 >
                     <Toolbar />
-                    {selectedExo && exercises[selectedExo]}
+                    {selectedExo in exercises && exercises[selectedExo]}
+                    {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
                 </Box>
             </Box>
         </div>
