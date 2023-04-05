@@ -12,4 +12,7 @@ export interface Exo_interface {
   answers: string[];
 }
 
-export const exos: Exo_interface[] = [exo_metro, exo_pokemon, exo_fonciere, exo_pays];
+export const exos: { [key: string]: Exo_interface } = {};
+[exo_metro, exo_pokemon, exo_fonciere, exo_pays].forEach((exo) => {
+  exos[exo.name] = exo;
+});

@@ -22,18 +22,18 @@ import GithubCorner from "react-github-corner";
 import { Grid, Link } from "@mui/material";
 
 const drawerWidth = 240;
-import { exo_pays } from "./exos/pays"
 
-let cours = [
-    { name: "Requêtes sur une table", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: [exo_pays] },
-    { name: "Plusieurs tables", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/2_join/join.pdf", exos: [] },
-    { name: "Fonctions d'agrégation", url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/3_groupby/groupby.pdf", exos: [] },
-];
+const cours = {
+    "Requêtes sur une table": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: ["Pays"] },
+    "Plusieurs tables": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/2_join/join.pdf", exos: [] },
+    "Fonctions d'agrégation": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/3_groupby/groupby.pdf", exos: [] },
+}
+const exercices_other = ["Pokémon", "Métro parisien", "Valeur foncière"];
 
 export default function App(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [selectedExo, setSelectedExo] = React.useState(null);
+    const [selectedExo, setSelectedExo] = React.useState("Pays");
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -53,9 +53,9 @@ export default function App(props) {
     }
 
     const exercise = (e: any) => {
-        return <ListItem key={e.name} disablePadding>
+        return <ListItem key={e} disablePadding>
             <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => setSelectedExo(e)}>
-                Exercice : {e.name}
+                Exercice : {e}
             </ListItemButton>
         </ListItem>
     }
@@ -63,7 +63,7 @@ export default function App(props) {
     const drawer = (
         <div>
             <List>
-                {cours.map(({ name, url, exos }) => (
+                {Object.entries(cours).map(([name, { url, exos }]) => (
                     <div>
                         {title(name)}
                         <Link href={url} target="_blank" sx={{ textDecoration: "none", color: "inherit" }} >
@@ -74,12 +74,12 @@ export default function App(props) {
                     </div>
                 ))}
                 {title("Exercices généraux")}
-                {exos.map(exercise)}
+                {exercices_other.map(exercise)}
             </List>
         </div>
     );
     const exercises = {};
-    exos.forEach((e) => exercises[e.name] = <Exo key={e.name} {...e} />);
+    Object.values(exos).forEach((e) => exercises[e.name] = <Exo key={e.name} {...e} />);
     return (
         <div>
             <Box sx={{ display: "flex" }}>
@@ -160,7 +160,7 @@ export default function App(props) {
                     }}
                 >
                     <Toolbar />
-                    {selectedExo && exercises[selectedExo.name]}
+                    {selectedExo && exercises[selectedExo]}
                 </Box>
             </Box>
         </div>
