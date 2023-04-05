@@ -1,4 +1,4 @@
-import React from "react";
+// https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/
 import { Exo_interface } from "./exos";
 
 export const exo_fonciere: Exo_interface = {

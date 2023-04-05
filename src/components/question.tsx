@@ -40,15 +40,15 @@ export default ({ name, db, question, answer }): JSX.Element => {
             </IconButton>
         </React.Fragment>
     );
-    let sev: AlertColor = "success";
+    let severity: AlertColor = "success";
     let message = "Correct !";
     if (error) {
-        sev = "error";
+        severity = "error";
         message = "Erreur : " + error;
     }
     else if (verdict === 0) {
-        sev = "error";
-        message = "Incorrect !";
+        severity = "warning";
+        message = "Mauvais résultat.";
     }
     return (
         <Box mb={4} key={name}>
@@ -56,7 +56,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                 {question}
             </Grid>
             <Snackbar open={open} autoHideDuration={6000} action={action}>
-                <Alert onClose={handleClose} severity={sev} sx={{ width: '100%' }}>
+                <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
                     {message}
                 </Alert>
             </Snackbar>
@@ -96,7 +96,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                                 setVerdict(equal(r[0].values, expected[0].values) ? 1 : 0);
                             } catch (err) {
                                 console.log(err);
-                                // setError(err);
+                                setError(err.message);
                             }
                             setOpen(true);
                         }}

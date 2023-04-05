@@ -1,4 +1,3 @@
-import React from "react";
 import { Exo_interface } from "./exos";
 
 export const exo_pokemon: Exo_interface = {

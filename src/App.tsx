@@ -1,5 +1,3 @@
-// https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/
-
 import React from "react";
 import "./styles.css";
 import Exo from "./components/exo";
@@ -24,16 +22,16 @@ import { Grid } from "@mui/material";
 const drawerWidth = 240;
 
 const cours = {
-    "Requêtes sur une table": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/1_select/select.pdf", exos: ["Pays"] },
-    "Plusieurs tables": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/2_join/join.pdf", exos: [] },
-    "Fonctions d'agrégation": { url: "https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/3_groupby/groupby.pdf", exos: [] },
+    "Requêtes sur une table": { url: "1_select/select.pdf", exos: ["Pays"] },
+    "Plusieurs tables": { url: "2_join/join.pdf", exos: [] },
+    "Fonctions d'agrégation": { url: "3_groupby/groupby.pdf", exos: [] },
 }
 const exercices_other = ["Pokémon", "Métro parisien", "Valeur foncière"];
 
 export default function App(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [selectedExo, setSelectedExo] = React.useState("Pays");
+    const [selectedExo, setSelectedExo] = React.useState("Requêtes sur une table");
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -54,7 +52,7 @@ export default function App(props) {
 
     const exercise = (e: any) => {
         return <ListItem key={e} disablePadding>
-            <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => setSelectedExo(e)}>
+            <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => {setSelectedExo(e); setMobileOpen(false)}}>
                 Exercice : {e}
             </ListItemButton>
         </ListItem>
@@ -67,7 +65,7 @@ export default function App(props) {
                     <div>
                         {title(name)}
                         <ListItem key={name} disablePadding>
-                            <ListItemButton disableRipple selected={selectedExo === name} onClick={(_) => setSelectedExo(name)}>
+                            <ListItemButton disableRipple selected={selectedExo === name} onClick={(_) => {setSelectedExo(name); setMobileOpen(false)}}>
                                 Cours
                             </ListItemButton>
                         </ListItem>
@@ -112,7 +110,7 @@ export default function App(props) {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            Cours et exercices SQL
+                            {selectedExo}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -165,7 +163,7 @@ export default function App(props) {
                 >
                     <Toolbar />
                     {selectedExo in exercises && exercises[selectedExo]}
-                    {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
+                    {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
                 </Box>
             </Box>
         </div>

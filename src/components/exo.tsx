@@ -25,6 +25,7 @@ export default (exo: Exo_interface): JSX.Element => {
             setDb(db);
         })();
     }, []);
+    
     return (
         <div key={exo.name}>
             <Grid container justifyContent="center" alignItems="center">
@@ -40,9 +41,9 @@ export default (exo: Exo_interface): JSX.Element => {
             </Grid>
             <Divider sx={{ m: 3 }} />
             <Grid container justifyContent="center" alignItems="center">
-                <Pagination count={exo.questions.length} page={page} onChange={(_, v) => { setPage(v) }} />
+                <Pagination siblingCount={exo.questions.length} count={exo.questions.length} page={page} onChange={(_, v) => { setPage(v) }} />
             </Grid>
-            {exo.questions.map((q, i) =>
+            {exo.questions.map((_, i) =>
                 <div style={{ display: i + 1 === page ? "block" : "none" }}>
                     <Question
                         name={exo.name}
