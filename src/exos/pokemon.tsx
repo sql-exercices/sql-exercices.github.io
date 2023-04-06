@@ -6,7 +6,7 @@ export const exo_pokemon: Exo_interface = {
     <div>Base de données contenant les pokémons de la 1ère génération.</div>
   ),
   db_url:
-    "https://raw.githubusercontent.com/mp2i-info/mp2i-info.github.io/main/files/A_sql/pokemon/pokemon.sql",
+    "https://raw.githubusercontent.com/fortierq/datasets/main/pokemon/pokemon.sql",
   diagram: "62853fe17f945876b6459548",
   questions: [
     "Calculer le nombre de pokémons.",

@@ -22,11 +22,12 @@ import { Grid } from "@mui/material";
 const drawerWidth = 240;
 
 const cours = {
-    "Requêtes sur une table": { url: "1_select/select.pdf", exos: ["Pays"] },
+    "Requêtes sur une table": { url: "1_select/select.pdf", exos: ["Pays", "Métro parisien"] },
     "Plusieurs tables": { url: "2_join/join.pdf", exos: [] },
-    "Fonctions d'agrégation": { url: "3_groupby/groupby.pdf", exos: [] },
+    "Fonctions d'agrégation": { url: "3_groupby/groupby.pdf", exos: ["Pokémon"] },
+    "Requêtes imbriquées": { url: "4_imbrique/imbrique.pdf", exos: ["Concours"] },
 }
-const exercices_other = ["Pokémon", "Métro parisien", "Valeur foncière"];
+const exercices_other = ["Valeur foncière"];
 
 export default function App(props) {
     const { window } = props;

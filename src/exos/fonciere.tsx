@@ -5,7 +5,7 @@ export const exo_fonciere: Exo_interface = {
   name: "Valeur foncière",
   diagram: "630bbf70f1a9b01b0ffa30be",
   db_url:
-    "https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/fonciere/fonciere.sql",
+    "https://raw.githubusercontent.com/fortierq/datasets/main/fonciere/fonciere.sql",
   description: (
     <div>
       Informations sur une partie des ventes immobilières 2021 en France.{" "}

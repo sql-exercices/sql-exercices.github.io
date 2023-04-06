@@ -33,11 +33,11 @@ export const exo_metro: Exo_interface = {
     </Grid>
   ),
   db_url:
-    "https://raw.githubusercontent.com/fortierq/notebooks/master/nb/db/metro/metro.sql",
+    "https://raw.githubusercontent.com/fortierq/datasets/main/metro_paris/metro_paris.sql",
   diagram: "630e18a30911f91ba5f92ffa",
   questions: [
     "Afficher toutes les stations de métro.",
-    "Afficher la (ou les) station(s) de Massy.",
+    "Afficher la (ou les) station(s) de la ville de Massy.",
     "Afficher la station et le trafic de la station la plus fréquentée.",
     "Afficher chaque arrondissement avec son nombre de stations de métro.",
   ],
