@@ -97,7 +97,7 @@ export default function App(props) {
                 >
                     <Toolbar>
                         <GithubCorner
-                            href="https://apprendre-sql.github.io"
+                            href="https://github.com/apprendre-sql/apprendre-sql.github.io"
                             direction="right"
                             size="60"
                         />
