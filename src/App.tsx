@@ -97,7 +97,7 @@ export default function App(props) {
                 >
                     <Toolbar>
                         <GithubCorner
-                            href="https://github.com/cpge-exercices/sql"
+                            href="https://apprendre-sql.github.io"
                             direction="right"
                             size="60"
                         />
@@ -166,12 +166,12 @@ export default function App(props) {
                     {selectedExo in exercises && exercises[selectedExo]}
                     {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
                     {!selectedExo && <div>
-                        <img src="./xkcd.png" width="100%" />
+                        {/* <img src="./xkcd.png" width="100%" /> */}
                         Ce site propose des cours et exercices interactifs pour apprendre SQL.
                         <br />
                         Il est conforme au programme de CPGE (filières MP2I, MP, PC, PSI, PT, BCPST).
                         <br /><br />
-
+                        <a href="https://fortierq.github.io/teaching>">Voir mes autres cours</a>.
                     </div>}
                 </Box>
             </Box>
