@@ -19,32 +19,40 @@ export const exo_metro: Exo_interface = {
         </li>
         <li>
           <code>ville</code> : ville de la station (exemples :{" "}
-          <code>'Paris'</code>, <code>'Saint-Denis'</code>)
+          <code>'Paris'</code>)
         </li>
         <li>
           <code>arrondissement</code> : arrondissement de la station (uniquement
           pour Paris)
         </li>
-        <li>
+        {/* <li>
           <code>correspondance_1</code> à <code>correspondance_5</code> : lignes
           de métro/RER passant par la station
-        </li>
+        </li> */}
       </ul>
+      <a href="https://www.data.gouv.fr/fr/datasets/stations-de-metro">Source : data.gouv</a>.
     </Grid>
   ),
   db_url:
     "https://raw.githubusercontent.com/fortierq/datasets/main/metro_paris/metro_paris.sql",
   diagram: "630e18a30911f91ba5f92ffa",
   questions: [
-    "Afficher toutes les stations de métro.",
-    "Afficher la (ou les) station(s) de la ville de Massy.",
+    "Afficher toutes les stations.",
+    "Afficher les stations de la ville de Massy.",
+    "Afficher les stations de RER du 5ème arrondissement de Paris.",
+    "Combien y a-t-il eu de passagers dans la ville de Saint Denis en 2021 ?",
+    "Afficher le nom et la ville de toutes les stations en dehors de Paris avec un trafic supérieur à 10 millions",
     "Afficher la station et le trafic de la station la plus fréquentée.",
-    "Afficher chaque arrondissement avec son nombre de stations de métro.",
+    
+    // "Afficher chaque arrondissement avec son nombre de stations de métro.",
   ],
   answers: [
-    "SELECT DISTINCT station FROM metro;",
+    "SELECT DISTINCT station FROM metro",
     "SELECT station FROM metro WHERE ville = 'Massy'",
+    "SELECT station FROM metro WHERE arrondissement = 5 AND reseau = 'Rer'",
+    "SELECT SUM(trafic) as 'Nombre de passagers' FROM metro WHERE ville = 'Saint Denis'",
+    "SELECT station, ville FROM metro WHERE ville != 'Paris' AND trafic > 10000000",
     "SELECT station, trafic FROM metro ORDER BY trafic DESC LIMIT 1",
-    "SELECT arrondissement, COUNT(*) FROM metro GROUP BY arrondissement",
+    // "SELECT arrondissement, COUNT(*) FROM metro GROUP BY arrondissement",
   ],
 };

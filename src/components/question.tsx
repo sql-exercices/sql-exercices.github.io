@@ -52,14 +52,13 @@ export default ({ name, db, question, answer }): JSX.Element => {
     }
     return (
         <Box mb={4} key={name}>
-            <Grid container justifyContent="center" alignItems="center" sx={{ m: 2, fontWeight: 'bold' }}>
-                {question}
-            </Grid>
             <Snackbar open={open} autoHideDuration={6000} action={action}>
                 <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
                     {message}
                 </Alert>
             </Snackbar>
+            <Grid container justifyContent="center" alignItems="center" sx={{ m: 2, fontWeight: 'bold' }}>
+                {question}
             <Grid
                 spacing={2}
                 mb={5}
@@ -88,12 +87,16 @@ export default ({ name, db, question, answer }): JSX.Element => {
                         variant="contained"
                         color="success"
                         onClick={() => {
+                            setOpen(false);
                             try {
                                 let expected = db.exec(answer);
                                 let r = db.exec(request);
                                 setResult(r);
                                 setExpected(expected);
-                                setVerdict(equal(r[0].values, expected[0].values) ? 1 : 0);
+                                if (r.length === 0)
+                                    setVerdict(0);
+                                else
+                                    setVerdict(equal(r[0].values, expected[0].values) ? 1 : 0);
                             } catch (err) {
                                 console.log(err);
                                 setError(err.message);
@@ -105,27 +108,28 @@ export default ({ name, db, question, answer }): JSX.Element => {
                     </Button>
                 </Grid>
             </Grid>
-            <Grid container spacing={6} direction="row">
+            <Grid container justifyContent="center" alignItems="center" spacing={2} direction="row">
                 {result && (
-                    <Grid item md={5} xs={12}>
+                    <Grid item md={5.5} xs={12}>
                         <Typography align="center">
-                            Résultat de votre requête <br></br>
                             {result.map(({ columns, values }) => (
                                 <ResultsTable columns={columns} values={values} />
-                            ))}
+                                ))}<br />
+                            Résultat de votre requête
                         </Typography>
                     </Grid>
                 )}
                 {expected && (
-                    <Grid item md={5} xs={12}>
+                    <Grid item md={5.5} xs={12}>
                         <Typography align="center">
-                            Résultat attendu <br></br>
                             {expected.map(({ columns, values }) => (
                                 <ResultsTable columns={columns} values={values} />
-                            ))}
+                            ))}<br />
+                            Résultat attendu
                         </Typography>
                     </Grid>
                 )}
+            </Grid>
             </Grid>
         </Box>
     );

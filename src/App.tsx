@@ -32,7 +32,7 @@ const exercices_other = ["Valeur foncière"];
 export default function App(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [selectedExo, setSelectedExo] = React.useState("Requêtes sur une table");
+    const [selectedExo, setSelectedExo] = React.useState(null);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -64,7 +64,7 @@ export default function App(props) {
             <List>
                 {Object.entries(cours).map(([name, { url, exos }]) => (
                     <div>
-                        {title(name)}
+                        {name ? title(name) : "Apprendre SQL en CPGE"}
                         <ListItem key={name} disablePadding>
                             <ListItemButton disableRipple selected={selectedExo === name} onClick={(_) => {setSelectedExo(name); setMobileOpen(false)}}>
                                 Cours
@@ -111,7 +111,7 @@ export default function App(props) {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            {selectedExo}
+                            {selectedExo ? selectedExo : "Apprendre SQL en CPGE"}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -165,6 +165,14 @@ export default function App(props) {
                     <Toolbar />
                     {selectedExo in exercises && exercises[selectedExo]}
                     {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
+                    {!selectedExo && <div>
+                        <img src="./xkcd.png" width="100%" />
+                        Ce site propose des cours et exercices interactifs pour apprendre SQL.
+                        <br />
+                        Il est conforme au programme de CPGE (filières MP2I, MP, PC, PSI, PT, BCPST).
+                        <br /><br />
+
+                    </div>}
                 </Box>
             </Box>
         </div>
