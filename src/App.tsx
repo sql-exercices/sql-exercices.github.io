@@ -166,12 +166,15 @@ export default function App(props) {
                     {selectedExo in exercises && exercises[selectedExo]}
                     {selectedExo in cours && <iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${cours[selectedExo].url}#zoom=page-fit&pagemode=none`} width="100%" height="800" />}
                     {!selectedExo && <div>
-                        {/* <img src="./xkcd.png" width="100%" /> */}
-                        Ce site propose des cours et exercices interactifs pour apprendre SQL.
+                        Ce site propose des cours et exercices interactifs pour apprendre SQL et comprendre le fonctionnement des bases de données.
                         <br />
                         Il est conforme au programme de CPGE (filières MP2I, MP, PC, PSI, PT, BCPST).
                         <br /><br />
-                        <a href="https://fortierq.github.io/teaching>">Voir mes autres cours</a>.
+                        <Grid container justifyContent="center" alignItems="center">
+                        <img src="https://raw.githubusercontent.com/apprendre-sql/apprendre-sql.github.io/main/src/xkcd.png" width="600" />
+                        </Grid>
+                        <br />
+                        <a href="https://fortierq.github.io/teaching>">Mes autres cours</a>.
                     </div>}
                 </Box>
             </Box>
