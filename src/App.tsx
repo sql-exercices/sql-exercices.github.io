@@ -75,8 +75,8 @@ export default function App(props) {
                         <Divider sx={{ border: 1 }} />
                     </div>
                 ))}
-                {title("Exercices généraux")}
-                {exercices_other.map(exercise)}
+                {/* {title("Exercices généraux")}
+                {exercices_other.map(exercise)} */}
             </List>
         </div>
     );

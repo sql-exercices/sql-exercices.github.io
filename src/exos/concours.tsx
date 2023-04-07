@@ -15,19 +15,21 @@ export const exo_concours_plusieurs: Exo_interface = {
     "Donner le coefficient des mathématiques au concours ccinp, en pourcentage.", 
   ],
   answers: [
-    "SELECT nom FROM concours;",
+    "select distinct nom from concours;",
     "SELECT filiere, matiere, duree, coefficient FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE NOT oral",
-    "SELECT SUM(coefficient) as 'Coefficient des mathématiques' FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND matiere='mathématiques';",
-    "SELECT(SELECT SUM(coefficient) FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND matiere='mathématiques')/(SELECT SUM(coefficient) FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id) as 'Pourcentage mathématiques';"
+    "SELECT SUM(coefficient) as 'coefficient des mathématiques' FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND matiere='mathématiques';",
+    "SELECT(SELECT SUM(coefficient) FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND matiere='mathématiques')/(SELECT SUM(coefficient) FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id) as 'pourcentage mathématiques';"
   ],
 };
 
 export const exo_concours_group = {
     ...exo_concours_plusieurs, 
     questions: [
-        "Donner le nombre d'épreuves pour chaque concours.",
+        "Afficher le coefficient total de chaque matière pour la filière mpi du concours ccinp.",
+        "Pour chaque concours, afficher le nom, la filière, le nombre d'épreuves écrites et leur durée totale.",
     ],
     answers: [
-        "SELECT concours.nom, COUNT(*) as 'Nombre d\'épreuves' FROM epreuve JOIN concours ON concours_id=concours.id GROUP BY concours_id;",
+        "SELECT matiere, SUM(coefficient) as 'coefficient total' FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND filiere = 'mpi' GROUP BY matiere;",
+        "SELECT concours.nom, filiere, COUNT(*) as 'nombre d'épreuves', SUM(duree) as 'durée totale' FROM epreuve JOIN concours ON concours_id=concours.id WHERE NOT oral GROUP BY concours_id;",
     ],
 }
