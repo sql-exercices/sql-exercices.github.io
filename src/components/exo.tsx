@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Exo_interface } from "../exos/exos";
-import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
 import initSqlJs from "sql.js";
+import { Exo_interface } from "../exos/exos";
 // @ts-ignore
 import sqlWasm from "!!file-loader?name=sql-wasm-[contenthash].wasm!sql.js/dist/sql-wasm.wasm";
-import Question from "./question";
-import Box from "@mui/material/Box";
-import Pagination from '@mui/material/Pagination';
 import { Grid } from "@mui/material";
+import Box from "@mui/material/Box";
 import Divider from '@mui/material/Divider';
+import Pagination from '@mui/material/Pagination';
+import Question from "./question";
 
 export default (exo: Exo_interface): JSX.Element => {
     const [page, setPage] = useState(1);

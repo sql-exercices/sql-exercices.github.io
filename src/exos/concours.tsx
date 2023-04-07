@@ -15,7 +15,7 @@ export const exo_concours: Exo_interface = {
   ],
   answers: [
     "select distinct nom from concours;",
-    "SELECT filiere, matiere, duree, coefficient FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE NOT oral",
+    "SELECT filiere, matiere, duree, coefficient FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom = 'cmp' AND NOT oral",
     "SELECT SUM(coefficient) as 'coefficient des mathématiques' FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND matiere='mathématiques';",
   ],
 };
