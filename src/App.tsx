@@ -83,7 +83,7 @@ export default function App(props) {
         <b>Attention : dans vos réponses, les colonnes doivent apparaître dans le même ordre que dans la question.</b><br />
         <a href="https://github.com/sql-exercices/sql-exercices.github.io/issues">Signaler un problème</a><br />
         <a href="https://github.com/fortierq/datasets">Bases de données utilisées</a><br />
-        <a href="https://fortierq.github.io/teaching>">Mes autres cours</a><br /><br />
+        <a href="https://fortierq.github.io/teaching">Mes autres cours</a><br /><br />
         <Grid container justifyContent="center" alignItems="center">
             <img src="https://raw.githubusercontent.com/sql-exercices/sql-exercices.github.io/main/src/xkcd.png" width="600" />
         </Grid>
