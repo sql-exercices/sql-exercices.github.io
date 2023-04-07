@@ -21,11 +21,11 @@ import { Grid } from "@mui/material";
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 function HomeIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
+    return (
+        <SvgIcon {...props}>
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+    );
 }
 
 const drawerWidth = 240;
@@ -42,19 +42,9 @@ export default function App(props) {
     const container =
         window !== undefined ? () => window().document.body : undefined;
 
-    const title = (t: string) => {
-        return <ListItem key={t} >
-            <ListItemText primary={
-                <Grid container justifyContent="center" alignItems="center" sx={{ fontWeight: 'bold' }}>
-                    <Typography style={{ fontWeight: "bold" }}>{t}</Typography>
-                </Grid>
-            } />
-        </ListItem>
-    }
-
     const exercise = (e: any) => {
-        return <ListItem key={e} disablePadding>
-            <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => {setSelectedExo(e); setMobileOpen(false)}}>
+        return <ListItem key={e.questions[0]} disablePadding>
+            <ListItemButton disableRipple selected={selectedExo === e} onClick={(_) => { setSelectedExo(e); setMobileOpen(false) }}>
                 Exercice : {e.name}
             </ListItemButton>
         </ListItem>
@@ -65,9 +55,15 @@ export default function App(props) {
             <List>
                 {cours.map((c) => (
                     <div>
-                        {title(c.name)}
                         <ListItem key={c.name} disablePadding>
-                            <ListItemButton disableRipple selected={selectedExo === c} onClick={(_) => {setSelectedExo(c); setMobileOpen(false)}}>
+                            <ListItemText primary={
+                                <Grid container justifyContent="center" alignItems="center" sx={{ fontWeight: 'bold' }}>
+                                    <Typography style={{ fontWeight: "bold" }}>{c.name}</Typography>
+                                </Grid>
+                            } />
+                        </ListItem>
+                        <ListItem key={c.name + '2'} disablePadding>
+                            <ListItemButton disableRipple selected={selectedExo === c} onClick={(_) => { setSelectedExo(c); setMobileOpen(false) }}>
                                 Cours
                             </ListItemButton>
                         </ListItem>
@@ -75,12 +71,10 @@ export default function App(props) {
                         <Divider sx={{ border: 1 }} />
                     </div>
                 ))}
-                {/* {title("Exercices généraux")}
-                {exercices_other.map(exercise)} */}
             </List>
         </div>
     );
-    
+
     let main = (<div>
         Ce site propose des cours et exercices interactifs pour apprendre SQL et comprendre le fonctionnement des bases de données.
         <br />
@@ -91,14 +85,14 @@ export default function App(props) {
         <a href="https://github.com/fortierq/datasets">Bases de données utilisées</a><br />
         <a href="https://fortierq.github.io/teaching>">Mes autres cours</a><br /><br />
         <Grid container justifyContent="center" alignItems="center">
-        <img src="https://raw.githubusercontent.com/sql-exercices/sql-exercices.github.io/main/src/xkcd.png" width="600" />
+            <img src="https://raw.githubusercontent.com/sql-exercices/sql-exercices.github.io/main/src/xkcd.png" width="600" />
         </Grid>
     </div>)
     if (selectedExo) {
         if ('url' in selectedExo)
             main = (<iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${selectedExo.url}#zoom=page-fit&pagemode=none`} width="100%" height="700" />)
         else
-            main = (<Exo key={selectedExo.name} {...selectedExo} />)
+            main = (<Exo key={selectedExo.questions[0]} {...selectedExo} />)
     }
     return (
         <div>
@@ -132,7 +126,7 @@ export default function App(props) {
                             color="inherit"
                             aria-label="open drawer"
                             edge="start"
-                            onClick={(_) => {setSelectedExo(null)}}
+                            onClick={(_) => { setSelectedExo(null) }}
                             sx={{ mr: 1 }}
                         >
                             <HomeIcon fontSize="large" />

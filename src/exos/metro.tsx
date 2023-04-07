@@ -40,7 +40,7 @@ export const exo_metro: Exo_interface = {
     "Afficher toutes les stations.",
     "Afficher les stations de la ville de Massy.",
     "Afficher les stations de RER du 5ème arrondissement de Paris.",
-    "Combien y a-t-il eu de passagers dans la ville de Saint Denis en 2021 ?",
+    "Combien y a-t-il eu de passagers dans la ville de Saint Denis ?",
     "Afficher le nom et la ville de toutes les stations en dehors de Paris avec un trafic supérieur à 10 millions",
     "Afficher la station et le trafic de la station la plus fréquentée.",
     
