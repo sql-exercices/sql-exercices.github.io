@@ -1,7 +1,7 @@
 {
   "name": "sql_exercises",
   "version": "1.0.0",
-  "homepage": "https://apprendre-sql.github.io",
+  "homepage": "https://sql-exercices.github.io",
   "description": "Cours et exercices SQL en ligne",
   "keywords": [
     "react",

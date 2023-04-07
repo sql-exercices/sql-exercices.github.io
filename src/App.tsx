@@ -64,7 +64,7 @@ export default function App(props) {
             <List>
                 {Object.entries(cours).map(([name, { url, exos }]) => (
                     <div>
-                        {name ? title(name) : "Apprendre SQL en CPGE"}
+                        {title(name)}
                         <ListItem key={name} disablePadding>
                             <ListItemButton disableRipple selected={selectedExo === name} onClick={(_) => {setSelectedExo(name); setMobileOpen(false)}}>
                                 Cours
@@ -97,7 +97,7 @@ export default function App(props) {
                 >
                     <Toolbar>
                         <GithubCorner
-                            href="https://github.com/apprendre-sql/apprendre-sql.github.io"
+                            href="https://github.com/sql-exercices/sql-exercices.github.io"
                             direction="right"
                             size="60"
                         />
@@ -111,7 +111,7 @@ export default function App(props) {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            {selectedExo ? selectedExo : "Apprendre SQL en CPGE"}
+                            {selectedExo ? selectedExo : "Cours de bases de données et exercices SQL"}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -171,7 +171,7 @@ export default function App(props) {
                         Il est conforme au programme de CPGE (filières MP2I, MP, PC, PSI, PT, BCPST).
                         <br /><br />
                         <Grid container justifyContent="center" alignItems="center">
-                        <img src="https://raw.githubusercontent.com/apprendre-sql/apprendre-sql.github.io/main/src/xkcd.png" width="600" />
+                        <img src="https://raw.githubusercontent.com/sql-exercices/sql-exercices.github.io/main/src/xkcd.png" width="600" />
                         </Grid>
                         <br />
                         <a href="https://fortierq.github.io/teaching>">Mes autres cours</a>.
