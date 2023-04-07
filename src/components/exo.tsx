@@ -39,7 +39,7 @@ export default (exo: Exo_interface): JSX.Element => {
                     {exo.diagram && <iframe width="100%" height="450" src={"https://dbdiagram.io/embed/" + exo.diagram} />}
                 </Grid>
             </Grid>
-            <Divider sx={{ m: 3 }} />
+            <Divider sx={{ m: 2 }} />
             <Grid container justifyContent="center" alignItems="center">
                 <Pagination siblingCount={exo.questions.length} count={exo.questions.length} page={page} onChange={(_, v) => { setPage(v) }} />
             </Grid>

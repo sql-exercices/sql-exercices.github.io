@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import Exo from "./components/exo";
-import { cours, exercices_other } from "./exos/exos";
+import { cours } from "./exos/exos";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
