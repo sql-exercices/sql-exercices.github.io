@@ -85,7 +85,7 @@ export default function App(props) {
         <a href="https://github.com/fortierq/datasets">Bases de données utilisées</a><br />
         <a href="https://fortierq.github.io/teaching">Mes autres cours</a><br /><br />
         <Grid container justifyContent="center" alignItems="center">
-            <img src="https://raw.githubusercontent.com/sql-exercices/sql-exercices.github.io/main/src/xkcd.png" width="600" />
+            <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" width="600" />
         </Grid>
     </div>)
     if (selectedExo) {
