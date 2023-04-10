@@ -15,8 +15,8 @@ export const exo_pays: Exo_interface = {
     "Afficher le nom et la population des pays ayant moins de 2000 d'habitants.",
     "Afficher les pays dont le taux de naissance est inférieur au taux de décès.",
     "Afficher la population totale sur Terre, en milliards. On pourra diviser par 1e9.",
-    "Afficher le nombre total de naissances sur Terre.",
-    "Afficher les 10 pays de plus de 5 millions d'habitants ayant le plus fort taux de migration. On affichera aussi le taux de migration.",
+    "Afficher le nombre total de naissances sur Terre en 2015, en milliards.",
+    "Afficher les 10 pays de plus de 5 millions d'habitants ayant eu le plus fort taux de migration. On affichera aussi le taux de migration.",
     "Afficher les 10 pays d'au moins 5 millions d'habitants ayant la plus forte densité de population. On affichera aussi la densité.",
   ],
   answers: [
