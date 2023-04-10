@@ -65,7 +65,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Grid item md={10} sm={10} xs={12}>
+                    <Grid item xs={10}>
                         <Box sx={{ border: 1, width: "100%" }} p={0.5}>
                             <Editor
                                 height="13vh"
