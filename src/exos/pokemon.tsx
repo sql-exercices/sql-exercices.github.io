@@ -30,7 +30,7 @@ export const exo_pokemon_group = {
     ...exo_pokemon, 
     questions: [
         "Afficher chaque dresseur avec son nombre de pokémons et leur niveau moyen.",
-        "Afficher les dresseurs qui possèdent au moins 4 pokémons de niveau au moins 30."
+        "Afficher les dresseurs qui possèdent au moins 4 pokémons de niveau au moins 50."
     ],
     answers: [
         "select nom, count(*) as nombre_pokemons, avg(niveau) as niveau_moyen from dresseurs join detient_pokemons on id = dresseur_id group by nom",
