@@ -47,7 +47,7 @@ export const exo_metro: Exo_interface = {
     // "Afficher chaque arrondissement avec son nombre de stations de métro.",
   ],
   answers: [
-    "SELECT DISTINCT station FROM metro",
+    "SELECT station FROM metro",
     "SELECT station FROM metro WHERE ville = 'Massy'",
     "SELECT station FROM metro WHERE arrondissement = 5 AND reseau = 'Rer'",
     "SELECT SUM(trafic) as 'Nombre de passagers' FROM metro WHERE ville = 'Saint Denis'",
