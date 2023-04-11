@@ -12,6 +12,10 @@ import ResultsTable from "./results";
 
 var equal = require("fast-deep-equal/es6/react");
 
+function round_floats(a: number[][]) {
+    return a.map((x) => x.map((y) => (typeof y === "number" ? Math.round(y * 100) / 100 : y)));
+}
+
 export default ({ name, db, question, answer }): JSX.Element => {
     const [request, setRequest] = useState("");
     const [result, setResult] = useState<null | any[]>(null);
@@ -95,7 +99,7 @@ export default ({ name, db, question, answer }): JSX.Element => {
                                     if (r.length === 0)
                                         setVerdict(0);
                                     else
-                                        setVerdict(equal(r[0].values, expected[0].values) ? 1 : 0);
+                                        setVerdict(equal(round_floats(r[0].values), round_floats(expected[0].values)) ? 1 : 0);
                                     setError(null);
                                 } catch (err) {
                                     console.log(err);
