@@ -28,7 +28,7 @@ export const exo_concours_group = {
     ],
     answers: [
         "SELECT matiere, SUM(coefficient) as 'coefficient total' FROM epreuve JOIN concours ON concours_id=concours.id JOIN epreuve_matiere ON epreuve_id=epreuve.id WHERE concours.nom='ccinp' AND filiere = 'mpi' GROUP BY matiere;",
-        "SELECT concours.nom, filiere, COUNT(*) as 'nombre d'épreuves', SUM(duree) as 'durée totale' FROM epreuve JOIN concours ON concours_id=concours.id WHERE NOT oral GROUP BY concours_id;",
+        "SELECT concours.nom, filiere, COUNT(*) as "nombre d'épreuves", SUM(duree) as 'durée totale' FROM epreuve JOIN concours ON concours_id=concours.id WHERE NOT oral GROUP BY concours_id;",
     ],
 }
 
