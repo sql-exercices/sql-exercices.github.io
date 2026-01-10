@@ -88,7 +88,7 @@ export default function App(props) {
     </div>)
     if (selectedExo) {
         if ('url' in selectedExo)
-            main = (<iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/cours/${selectedExo.url}#zoom=page-fit&pagemode=none`} width="100%" height="700" />)
+            main = (<iframe src={`https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/fortierq/cours/main/sql/${selectedExo.url}#zoom=page-fit&pagemode=none`} width="100%" height="700" />)
         else
             main = (<Exo key={selectedExo.questions[0]} {...selectedExo} />)
     }
