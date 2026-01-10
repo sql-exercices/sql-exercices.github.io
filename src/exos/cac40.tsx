@@ -43,7 +43,6 @@ export const exo_cac40: Exo_interface = {
 
 export const exo_cac40_join: Exo_interface = {
   ...exo_cac40,
-  name: "CAC 40 (jointures)",
   questions: [
     "Afficher le nom et le chiffre d'affaires de chaque entreprise en 2024.",
     "Afficher le nom des entreprises du secteur 'Luxe' avec leur bénéfice en 2024.",
