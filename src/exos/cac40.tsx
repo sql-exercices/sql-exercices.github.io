@@ -13,7 +13,7 @@ export const exo_cac40: Exo_interface = {
       <a href="https://www.boursorama.com">Source : données publiques des entreprises</a>.
     </div>
   ),
-  db_url: "cac40.sql",
+  db_url: "https://raw.githubusercontent.com/fortierq/datasets/main/cac40/cac40.sql",
   diagram: "6962c115d6e030a024a8eb65",
   questions: [
     "Afficher le nom et le secteur de chaque entreprise du CAC 40.",

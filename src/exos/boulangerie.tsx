@@ -11,7 +11,7 @@ export const exo_boulangerie: Exo_interface = {
       <b>Commandes</b> : les achats effectués (client, boulangerie, pâtisserie, quantité, date).
     </div>
   ),
-  db_url: "boulangerie.sql",
+  db_url: "https://raw.githubusercontent.com/fortierq/datasets/main/boulangerie/boulangerie.sql",
   diagram: "6962cb2cd6e030a024a929d6",
   questions: [
     "Afficher le nom et la ville de chaque boulangerie.",
