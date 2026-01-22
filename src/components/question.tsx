@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Snackbar from "@mui/material/Snackbar";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ResultsTable from "./results";
 
 var equal = require("fast-deep-equal/es6/react");
@@ -17,12 +17,36 @@ function round_floats(a: number[][]) {
 }
 
 export default ({ name, db, question, answer }): JSX.Element => {
-    const [request, setRequest] = useState("");
+    const requestRef = useRef("");
+    const dbRef = useRef(db);
+    const answerRef = useRef(answer);
+    dbRef.current = db;
+    answerRef.current = answer;
+    
     const [result, setResult] = useState<null | any[]>(null);
     const [expected, setExpected] = useState<null | any[]>(null);
     const [verdict, setVerdict] = useState(0);
     const [error, setError] = useState(null);
     const [open, setOpen] = useState(false);
+
+    const validate = () => {
+        setOpen(false);
+        try {
+            let exp = dbRef.current.exec(answerRef.current);
+            let r = dbRef.current.exec(requestRef.current);
+            setResult(r);
+            setExpected(exp);
+            if (r.length === 0)
+                setVerdict(0);
+            else
+                setVerdict(equal(round_floats(r[0].values), round_floats(exp[0].values)) ? 1 : 0);
+            setError(null);
+        } catch (err) {
+            console.log(err);
+            setError(err.message);
+        }
+        setOpen(true);
+    };
 
     const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === "clickaway") {
@@ -74,7 +98,22 @@ export default ({ name, db, question, answer }): JSX.Element => {
                             <Editor
                                 height="13vh"
                                 defaultLanguage="sql"
-                                onChange={(e) => setRequest(e)}
+                                onChange={(e) => {
+                                    requestRef.current = e || "";
+                                }}
+                                onMount={(editor, monaco) => {
+                                    editor.addAction({
+                                        id: 'validate-sql',
+                                        label: 'Valider la requête',
+                                        keybindings: [
+                                            monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter
+                                        ],
+                                        run: () => {
+                                            requestRef.current = editor.getValue();
+                                            validate();
+                                        }
+                                    });
+                                }}
                                 options={{
                                     lineNumbers: "off",
                                     minimap: {
@@ -89,26 +128,9 @@ export default ({ name, db, question, answer }): JSX.Element => {
                             size="large"
                             variant="contained"
                             color="success"
-                            onClick={() => {
-                                setOpen(false);
-                                try {
-                                    let expected = db.exec(answer);
-                                    let r = db.exec(request);
-                                    setResult(r);
-                                    setExpected(expected);
-                                    if (r.length === 0)
-                                        setVerdict(0);
-                                    else
-                                        setVerdict(equal(round_floats(r[0].values), round_floats(expected[0].values)) ? 1 : 0);
-                                    setError(null);
-                                } catch (err) {
-                                    console.log(err);
-                                    setError(err.message);
-                                }
-                                setOpen(true);
-                            }}
+                            onClick={validate}
                         >
-                            Valider
+                            OK (Ctrl + Enter)
                         </Button>
                     </Grid>
                 </Grid>
