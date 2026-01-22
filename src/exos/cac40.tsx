@@ -18,7 +18,6 @@ export const exo_cac40: Exo_interface = {
   questions: [
     "Afficher le nom et le secteur de chaque entreprise du CAC 40.",
     "Afficher les entreprises du secteur 'Luxe'.",
-    "Afficher les entreprises créées avant 1900, triées par date de création.",
     "Afficher le chiffre d'affaires total de toutes les entreprises du CAC 40 en 2023, en milliards d'euros.",
     "Afficher les 5 entreprises ayant réalisé le plus gros bénéfice net en 2023.",
     "Afficher le nom et la marge nette (bénéfice/chiffre d'affaires × 100) des entreprises en 2023, triées par marge décroissante. Limiter aux 10 premières.",
@@ -30,7 +29,6 @@ export const exo_cac40: Exo_interface = {
   answers: [
     "SELECT nom, secteur FROM entreprises",
     "SELECT nom FROM entreprises WHERE secteur = 'Luxe'",
-    "SELECT nom, date_creation FROM entreprises WHERE date_creation < 1900 ORDER BY date_creation",
     "SELECT SUM(chiffre_affaires) / 1000 AS ca_milliards FROM finances WHERE annee = 2023",
     "SELECT e.nom, f.benefice_net FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 ORDER BY f.benefice_net DESC LIMIT 5",
     "SELECT e.nom, (f.benefice_net * 100.0 / f.chiffre_affaires) AS marge_nette FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 ORDER BY marge_nette DESC LIMIT 10",
