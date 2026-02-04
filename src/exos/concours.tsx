@@ -7,7 +7,7 @@ export const exo_concours: Exo_interface = {
     ),
     db_url:
         "https://raw.githubusercontent.com/fortierq/datasets/main/concours/concours.sql",
-    diagram: "642ec2708615191cfa8bf1a2",
+    diagram: "642ec2708615191cfa8bf1a2/6983a1ccbd82f5fce2abfd15",
     questions: [
         "Afficher les noms des concours dans la base de données.",
         "Afficher les épreuves à l'écrit de cmp (Concours Mines-Ponts) : filière, matière, durée et coefficient.",

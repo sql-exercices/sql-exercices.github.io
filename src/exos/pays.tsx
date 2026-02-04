@@ -9,7 +9,7 @@ export const exo_pays: Exo_interface = {
   ),
   db_url:
     "https://raw.githubusercontent.com/fortierq/datasets/main/pays/pays.sql",
-  diagram: "642c778b5758ac5f1726bc6c",
+  diagram: "642c778b5758ac5f1726bc6c/6983a1b9bd82f5fce2abfb46",
   questions: [
     "Afficher le nom, la population et la surface de chaque pays.",
     "Afficher le nom et la population des pays ayant moins de 2000 d'habitants.",

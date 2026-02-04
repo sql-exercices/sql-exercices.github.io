@@ -7,7 +7,7 @@ export const exo_pokemon: Exo_interface = {
   ),
   db_url:
     "https://raw.githubusercontent.com/fortierq/datasets/main/pokemon/pokemon.sql",
-  diagram: "62853fe17f945876b6459548",
+  diagram: "62853fe17f945876b6459548/6983a1fcbd82f5fce2ac01ea",
   questions: [
     "Calculer le nombre de pokémons.",
     "Afficher le nom de chaque pokémon avec son niveau d'évolution.",

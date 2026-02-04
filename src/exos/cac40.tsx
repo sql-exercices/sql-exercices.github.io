@@ -14,27 +14,17 @@ export const exo_cac40: Exo_interface = {
     </div>
   ),
   db_url: "https://raw.githubusercontent.com/fortierq/datasets/main/cac40/cac40.sql",
-  diagram: "6962c115d6e030a024a8eb65",
+  diagram: "6962c115d6e030a024a8eb65/6962c4bdd6e030a024a90421",
   questions: [
     "Afficher le nom et le secteur de chaque entreprise du CAC 40.",
     "Afficher les entreprises du secteur 'Luxe'.",
     "Afficher le chiffre d'affaires total de toutes les entreprises du CAC 40 en 2023, en milliards d'euros.",
-    "Afficher les 5 entreprises ayant réalisé le plus gros bénéfice en 2023.",
-    "Afficher le nom et la marge nette (bénéfice/chiffre d'affaires × 100) des entreprises en 2023, triées par marge décroissante. Limiter aux 10 premières.",
-    "Afficher les entreprises dont le bénéfice a augmenté entre 2022 et 2023.",
-    "Afficher le chiffre d'affaires moyen par secteur en 2023, trié par chiffre d'affaires décroissant.",
-    "Afficher les entreprises dont la dette dépasse les capitaux propres en 2023.",
     "Afficher l'évolution du bénéfice total du CAC 40 par année.",
   ],
   answers: [
     "SELECT nom, secteur FROM entreprises",
     "SELECT nom FROM entreprises WHERE secteur = 'Luxe'",
     "SELECT SUM(chiffre_affaires) / 1000 AS ca_milliards FROM finances WHERE annee = 2023",
-    "SELECT e.nom, f.benefice FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 ORDER BY f.benefice DESC LIMIT 5",
-    "SELECT e.nom, (f.benefice * 100.0 / f.chiffre_affaires) AS marge_nette FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 ORDER BY marge_nette DESC LIMIT 10",
-    "SELECT e.nom FROM entreprises e JOIN finances f22 ON e.id = f22.entreprise_id JOIN finances f23 ON e.id = f23.entreprise_id WHERE f22.annee = 2022 AND f23.annee = 2023 AND f23.benefice > f22.benefice",
-    "SELECT e.secteur, AVG(f.chiffre_affaires) AS ca_moyen FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 GROUP BY e.secteur ORDER BY ca_moyen DESC",
-    "SELECT e.nom, f.dette, f.capitaux_propres FROM entreprises e JOIN finances f ON e.id = f.entreprise_id WHERE f.annee = 2023 AND f.dette > f.capitaux_propres",
     "SELECT annee, SUM(benefice) AS benefice_total FROM finances GROUP BY annee ORDER BY annee",
   ],
 };

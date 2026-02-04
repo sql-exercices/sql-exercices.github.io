@@ -35,7 +35,7 @@ export const exo_metro: Exo_interface = {
   ),
   db_url:
     "https://raw.githubusercontent.com/fortierq/datasets/main/metro_paris/metro_paris.sql",
-  diagram: "630e18a30911f91ba5f92ffa",
+  diagram: "630e18a30911f91ba5f92ffa/6983a1e4bd82f5fce2abff2f",
   questions: [
     "Afficher toutes les stations.",
     "Afficher les stations de la ville de Massy.",

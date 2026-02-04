@@ -35,7 +35,7 @@ export default (exo: Exo_interface): JSX.Element => {
                 </Grid>
                 }
                 <Grid item sm={8} xs={12}>
-                    {exo.diagram && <iframe width="100%" height="450" src={"https://dbdiagram.io/embed/" + exo.diagram} />}
+                    {exo.diagram && <iframe width="100%" height="450" src={"https://dbdiagram.io/e/" + exo.diagram} />}
                 </Grid>
             </Grid>
             <Divider sx={{ m: 2 }} />

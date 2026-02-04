@@ -12,7 +12,7 @@ export const exo_boulangerie: Exo_interface = {
     </div>
   ),
   db_url: "https://raw.githubusercontent.com/fortierq/datasets/main/boulangerie/boulangerie.sql",
-  diagram: "6962cb2cd6e030a024a929d6",
+  diagram: "6962cb2cd6e030a024a929d6/6983a19dbd82f5fce2abf903",
   questions: [
     "Afficher le nom et la ville de chaque boulangerie.",
     "Afficher les pâtisseries coûtant moins de 3 euros.",
