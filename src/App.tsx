@@ -85,6 +85,7 @@ export default function App(props) {
         <a href="https://github.com/fortierq/datasets">Bases de données utilisées</a><br />
         <a href="https://github.com/sql-exercices/sql-exercices.github.io/tree/main/src/exos">Contribuer en ajoutant un exercice ou des questions (par pull request)</a><br />
         <a href="https://fortierq.github.io/teaching">Mes autres cours</a>
+        <a href="https://mpi-lamartin.github.io/mpi-info">Cours d'informatique en MPI</a>
     </div>)
     if (selectedExo) {
         if ('url' in selectedExo)
