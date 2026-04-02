@@ -39,7 +39,6 @@ export const exo_boulangerie_join: Exo_interface = {
     "Afficher le nom des pâtisseries commandées à la boulangerie 'Au Pain Doré'.",
     "Afficher les clients ayant commandé dans une boulangerie de leur propre ville.",
     "Afficher le nom du client, la pâtisserie et le prix total (prix × quantité) pour chaque commande.",
-    "Afficher les pâtisseries jamais commandées.",
     "Afficher le nom des clients ayant commandé des pâtisseries à plus de 400 calories.",
   ],
   answers: [
@@ -49,7 +48,6 @@ export const exo_boulangerie_join: Exo_interface = {
     "SELECT DISTINCT p.nom FROM commandes co JOIN boulangeries b ON co.boulangerie_id = b.id JOIN patisseries p ON co.patisserie_id = p.id WHERE b.nom = 'Au Pain Doré'",
     "SELECT DISTINCT cl.nom, cl.prenom FROM commandes co JOIN clients cl ON co.client_id = cl.id JOIN boulangeries b ON co.boulangerie_id = b.id WHERE cl.ville = b.ville",
     "SELECT cl.nom, p.nom, p.prix * co.quantite AS total FROM commandes co JOIN clients cl ON co.client_id = cl.id JOIN patisseries p ON co.patisserie_id = p.id",
-    "SELECT p.nom FROM patisseries p LEFT JOIN commandes co ON p.id = co.patisserie_id WHERE co.id IS NULL",
     "SELECT DISTINCT cl.nom FROM commandes co JOIN clients cl ON co.client_id = cl.id JOIN patisseries p ON co.patisserie_id = p.id WHERE p.calories > 400",
   ],
 };
