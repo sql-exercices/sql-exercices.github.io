@@ -9,6 +9,7 @@
     const base = "/";
     const path = location.pathname;
     const suffix = path.startsWith(base) ? path.slice(base.length) : '';
+    document.querySelector('link[rel="canonical"]').href = "https://mpi-informatique.github.io/sql/" + suffix;
     location.replace("https://mpi-informatique.github.io/sql/" + suffix + location.search + location.hash);
   </script>
   <noscript><meta http-equiv="refresh" content="0; url=https://mpi-informatique.github.io/sql/"></noscript>
